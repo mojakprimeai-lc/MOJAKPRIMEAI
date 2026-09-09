@@ -513,7 +513,7 @@ export const principles: Feature[] = [
   },
   {
     icon: Receipt,
-    title: "No forced monthly fees",
-    body: "You pay to build it, then only when you need something changed. Optional cover exists if you want us on standby — it is not compulsory.",
+    title: "No forced Mojak labour fees",
+    body: "You pay to build it, then only when you need something changed. Platform costs for WhatsApp or paid AI are separate and shown upfront. Optional Care Plan if you want one monthly figure.",
   },
 ];

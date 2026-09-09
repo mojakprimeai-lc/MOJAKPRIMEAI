@@ -20,14 +20,17 @@ import { faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Pricing — what an AI website, assistant or POS costs in Kenya",
   description:
-    "Published pricing from Mojak Prime AI. Chat assistants from KES 20,000, a website with an AI assistant from KES 60,000, commerce and POS builds from KES 150,000. Pay-as-you-go support with no compulsory monthly fee.",
+    "Published pricing from Mojak Prime AI. Chat assistants from KES 20,000, a website with an AI assistant from KES 60,000, commerce and POS builds from KES 150,000. One-off setup, pay-as-you-go Mojak support, platform usage explained upfront.",
   alternates: { canonical: "/pricing" },
 };
 
 const pricingFaqs = faqs.filter((item) =>
-  ["Is this affordable for a small business?", "How long does it take?", "Who owns the website, the data and the customer list?"].includes(
-    item.q,
-  ),
+  [
+    "Is this affordable for a small business?",
+    "Is there really no monthly cost after setup?",
+    "How long does it take?",
+    "Who owns the website, the data and the customer list?",
+  ].includes(item.q),
 );
 
 export default function PricingPage() {
@@ -163,9 +166,10 @@ export default function PricingPage() {
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-azure/10 text-azure-deep">
                   <Wrench className="h-5 w-5" strokeWidth={1.75} aria-hidden />
                 </span>
-                <h2 className="mt-5 text-2xl">After launch: pay as you go</h2>
+                <h2 className="mt-5 text-2xl">After launch: Mojak pay as you go</h2>
                 <p className="mt-3 text-ink/70">
-                  The default. No retainer, no subscription, no charge in the months you need nothing from us.
+                  The default for our labour. No Mojak retainer, no subscription for months you need nothing
+                  from us. Platform costs for WhatsApp, paid AI and hosting are separate — see the notes below.
                 </p>
 
                 <dl className="mt-7 divide-y divide-ink/8 border-y border-ink/8">

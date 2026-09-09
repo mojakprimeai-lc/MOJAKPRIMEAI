@@ -54,8 +54,7 @@ export default function AboutPage() {
                 costs. Then we hand over something the owner controls.
               </p>
               <p className="font-medium text-ink">
-                We are new. We would rather you tested two working systems on your own phone than took our word
-                for anything.
+                We would rather you tested live examples on your own phone than took our word for anything.
               </p>
             </div>
           </div>

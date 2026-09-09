@@ -90,10 +90,10 @@ export const carePlan = {
   name: "Care Plan (optional)",
   price: "From KES 2,500 / month",
   summary:
-    "Only if you want us on standby. Hosting and domain renewal, AI usage covered, monitoring, backups, priority response, and small monthly changes included.",
+    "Only if you want one predictable monthly figure. Hosting and domain renewal, AI and messaging usage where bundled, monitoring, backups, priority response, and small monthly changes included.",
   points: [
     "Hosting, backups and uptime monitoring",
-    "AI usage costs bundled and predictable",
+    "AI and messaging usage bundled where we agree it in writing",
     "Priority response during business hours",
     "Small content changes included each month",
     "Cancel any month — nothing is locked in",
@@ -102,12 +102,16 @@ export const carePlan = {
 
 export const pricingNotes = [
   {
-    title: "Why there is no forced monthly fee",
-    body: "Most Nairobi SMEs have been burned by a subscription that kept charging after the service stopped. You pay to build the system, then only when you need something changed. The Care Plan exists for businesses that prefer everything handled — it is optional.",
+    title: "No forced Mojak labour fee",
+    body: "Most Nairobi SMEs have been burned by a subscription that kept charging after the service stopped. Our build fee is one-off. After launch you pay us for changes only when you need them. The Care Plan is optional if you want us on standby.",
+  },
+  {
+    title: "Platform running costs are separate",
+    body: "Keeping WhatsApp, social messaging and paid AI models live has continuous platform costs — Meta conversation fees, AI usage where a paid model is used, and hosting. Those are not a Mojak retainer. We show you the expected figures before go-live, and the Care Plan can bundle them into one monthly number.",
   },
   {
     title: "About AI running costs",
-    body: "Assistants that use a paid AI model have a small running cost per conversation. Simple assistants that answer from your own written information have none. We tell you which one you are getting and what it costs before switching it on.",
+    body: "Assistants that answer from your own written information have no per-message AI cost. Assistants that use a paid AI model have a small cost per conversation. We tell you which one you are getting and what it costs before switching it on.",
   },
   {
     title: "Payment terms",

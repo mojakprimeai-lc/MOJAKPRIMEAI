@@ -33,33 +33,33 @@ export const caseStudies: CaseStudy[] = [
     location: "Machakos, Kenya",
     year: "2026",
     demo: {
-      label: "Open the live site",
+      label: "Open the live example",
       href: "https://visumhotel.netlify.app/",
       external: true,
-      note: "Live and online. Open it on your phone and try the concierge.",
+      note: "A live example you can open on your phone. Try the concierge and send a test enquiry.",
     },
     summary:
-      "A boutique garden hotel that was taking every booking enquiry by phone. We built the website, a 24-hour concierge assistant, and a reservation desk their staff run themselves.",
+      "A boutique garden hotel that already had a website. We rebuilt the guest experience and added a 24-hour AI concierge, reservation capture, staff messaging for opted-in guests, and the automation layer around it.",
     brief:
-      "Visum Park is a garden hotel with rooms, a restaurant, conference halls and an events lawn. Enquiries arrived by phone during office hours only, guests repeated the same questions about rates and directions, and there was no way to reach past guests when there was something on. Everything needed to work on a phone, because that is how guests arrive.",
+      "Visum Park is a garden hotel with rooms, a restaurant, conference halls and an events lawn. They already had a public site, but guests still leaned on the phone for rates and availability, after-hours enquiries went cold, and there was no reliable way to reach past guests when there was something on. The brief was to improve what guests see, add AI that answers from the hotel's own facts, and give the desk tools for bulk offers and social follow-through — all on a phone, because that is how guests arrive.",
     challenge: [
       {
-        title: "Every question went to the front desk",
-        body: "Rates, check-in time, whether there is parking, how far from Nairobi, is there a pool. Staff answered the same list all day, and only while the desk was manned.",
+        title: "The site did not carry the full guest journey",
+        body: "Information lived across the old website and the front desk. Guests still called for rates, check-in times, parking, distance from Nairobi and event details — the same list, all day, only while the desk was manned.",
       },
       {
         title: "Enquiries after hours were simply lost",
-        body: "A traveller deciding at 10pm had no way to reach the hotel, and the hotel had no record that they had tried.",
+        body: "A traveller deciding at 10pm had no clean way to leave a structured request, and the hotel had no reliable record that they had tried.",
       },
       {
-        title: "No way to reach past guests",
-        body: "A Sunday buffet, a holiday lunch, a wedding season offer — no list, no channel, no reach.",
+        title: "No way to reach past guests at scale",
+        body: "A Sunday buffet, a holiday lunch, a wedding season offer — no owned list, no approved messaging path, no social automation the desk could run without starting from scratch every time.",
       },
     ],
     built: [
       {
-        title: "A complete website on the hotel's real information",
-        body: "Rooms and published rates, restaurant, conference packages with seating layouts, events garden, gallery, directions and policies. Every figure comes from one file, so the site, the concierge and the search listing can never disagree.",
+        title: "A rebuilt guest website on the hotel's real information",
+        body: "An upgraded site for rooms and published rates, restaurant, conference packages with seating layouts, events garden, gallery, directions and policies. Every figure comes from one source, so the site, the concierge and search listings stay aligned.",
       },
       {
         title: "A concierge that answers instantly",
@@ -70,14 +70,14 @@ export const caseStudies: CaseStudy[] = [
         body: "Guests request a room, hall, event or planning service and get a reference number, with the same details pushed to WhatsApp, email or phone so nothing is lost in translation.",
       },
       {
-        title: "A reservation desk for staff",
-        body: "A private, signed-in area where the team sees every enquiry by reference, and sends offers to guests who opted in — Sunday buffet, Madaraka Day, Christmas — from prepared message templates over SMS and WhatsApp.",
+        title: "Staff desk, bulk messaging and social automation",
+        body: "A private area where the team sees every enquiry by reference, sends offers to guests who opted in — Sunday buffet, Madaraka Day, Christmas — from prepared templates over SMS and WhatsApp, and keeps social follow-through from becoming another manual chore.",
       },
     ],
     proves: [
-      "We build complete, working systems, not mockups — real routes, real forms, real data",
+      "We can upgrade a business that already has a website — not only start from a blank page",
       "An AI assistant can be grounded so tightly in a client's facts that it cannot invent a price",
-      "Staff with no technical background can run the back office themselves",
+      "Staff with no technical background can run enquiries and guest offers themselves",
       "The whole thing is designed for a phone first, because that is what guests use",
     ],
     stack: [
@@ -120,13 +120,13 @@ export const caseStudies: CaseStudy[] = [
     location: "Nyamakima and Sheikh Karume Road, Nairobi",
     year: "2026",
     demo: {
-      label: "Open the demo build",
+      label: "Open the live example",
       href: "https://zeltsolarandelectricals.netlify.app/",
       external: true,
-      note: "Live and online. Open it on your phone and try the AI solar advisor.",
+      note: "A live example you can open on your phone. Try the AI solar advisor.",
     },
     summary:
-      "A solar and electrical retailer with two Nairobi shops, a catalogue customers could not browse online, and an AI advisor that now sizes systems and estimates savings for them.",
+      "A solar and electrical retailer with two Nairobi shops. We put the catalogue online with real prices and an AI advisor that sizes systems and estimates savings — with commerce features still rolling out.",
     brief:
       "Zelt sells solar floodlights, street lights, CCTV floodlights, garden lights, backup batteries, panels and cabling from two shops in the city. Customers were calling to ask which product suits their compound and how much they would save — questions that take a trained person ten minutes each, repeated all day.",
     challenge: [

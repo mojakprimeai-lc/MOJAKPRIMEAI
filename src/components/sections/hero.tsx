@@ -6,8 +6,8 @@ import { Container, Eyebrow } from "@/components/ui/primitives";
 import { credibility } from "@/lib/company";
 
 const trust = [
-  "Two client builds you can open today",
-  "No forced monthly fees",
+  "Live examples you can open today",
+  "No forced Mojak labour fees",
   "Nairobi CBD, and countrywide",
 ];
 
@@ -57,7 +57,7 @@ export function Hero() {
                 </Link>
                 <Link href="/work" className="btn btn-on-dark">
                   <PlayCircle className="h-4 w-4" strokeWidth={1.75} aria-hidden />
-                  See two live builds
+                  See live examples
                 </Link>
               </div>
             </Reveal>

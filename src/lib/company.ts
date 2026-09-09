@@ -48,9 +48,9 @@ export const nav = [
 /** Claims we can stand behind in front of a customer. Nothing invented. */
 export const credibility = [
   {
-    label: "Client systems built",
-    value: "2",
-    detail: "A hotel, live online, and a solar retailer you can open today",
+    label: "Examples you can open",
+    value: "Live",
+    detail: "Hotel and solar examples on your phone — test the assistants yourself",
   },
   {
     label: "Answering hours",
@@ -63,8 +63,8 @@ export const credibility = [
     detail: "From first meeting to a site you can show customers",
   },
   {
-    label: "Monthly retainer",
-    value: "None",
-    detail: "Pay for changes only when you need them",
+    label: "Mojak labour retainer",
+    value: "Optional",
+    detail: "No forced monthly Mojak fee. Platform usage is separate and shown upfront",
   },
 ] as const;

@@ -10,9 +10,9 @@ import { CheckList, Container, Pill, Section } from "@/components/ui/primitives"
 import { caseStudies } from "@/lib/work";
 
 export const metadata: Metadata = {
-  title: "Our work — live AI systems we have built in Kenya",
+  title: "Our work — live examples of AI systems built in Kenya",
   description:
-    "Two client systems built by Mojak Prime AI: Visum Park Hotel's website with a 24-hour concierge assistant and staff reservation desk, and Zelt Solar & Electricals' product catalogue with an AI solar advisor. Both open on your phone.",
+    "Selected live examples from Mojak Prime AI: Visum Park Hotel's rebuilt guest site with AI concierge and staff messaging, and Zelt Solar & Electricals' catalogue with an AI solar advisor. Open them on your phone.",
   alternates: { canonical: "/work" },
 };
 
@@ -21,8 +21,8 @@ export default function WorkPage() {
     <>
       <PageHero
         eyebrow="Our work"
-        title="Systems you can open, message and test before you pay us anything"
-        lede="Anyone can promise AI. These are two builds running in the real world — one hotel, one retailer. Open them on your phone and put the assistants through their paces."
+        title="Examples you can open, message and test before you pay us anything"
+        lede="Anyone can promise AI. These are selected live examples — a hotel site upgrade with AI and messaging tools, and a solar retailer's catalogue with an advisor. Open them on your phone and put the assistants through their paces."
         primary={{ label: "Book a free walkthrough", href: "/contact" }}
       />
 
@@ -32,7 +32,7 @@ export default function WorkPage() {
             <Smartphone className="mt-0.5 h-5 w-5 shrink-0 text-azure-deep" strokeWidth={1.75} aria-hidden />
             <p className="text-[0.9375rem] text-ink/75">
               <span className="font-semibold text-ink">Meeting one of our agents?</span> Ask them to open either
-              of these on their phone and hand it to you. Everything below is live, and nothing on this page is
+              example on their phone and hand it to you. Everything below is live, and nothing on this page is
               a mockup.
             </p>
           </div>
@@ -96,7 +96,7 @@ export default function WorkPage() {
       </Section>
 
       <CtaBand
-        title="Your business could be the next one on this page"
+        title="Your business could be the next example on this page"
         body="We build the first version fast, you test it as a customer, and it goes live when you are happy with it. The walkthrough that starts it is free."
       />
     </>

@@ -76,10 +76,11 @@ export function PricingPreview() {
             <div className="flex gap-4">
               <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-mint" strokeWidth={1.75} aria-hidden />
               <div>
-                <p className="font-display text-[1.0625rem] font-semibold">No compulsory monthly fee</p>
+                <p className="font-display text-[1.0625rem] font-semibold">No forced Mojak labour fee</p>
                 <p className="mt-1 text-[0.9375rem] text-ink/70">
-                  After launch you pay only when work happens — from KES 500 for a price change. An optional Care
-                  Plan exists if you would rather we handled everything.
+                  After launch you pay us only when work happens — from KES 500 for a price change. WhatsApp and
+                  paid AI usage still have platform costs; we show those upfront. An optional Care Plan can
+                  bundle them.
                 </p>
               </div>
             </div>

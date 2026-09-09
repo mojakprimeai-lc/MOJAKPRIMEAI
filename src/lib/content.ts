@@ -70,7 +70,7 @@ export const process = [
   {
     step: "06",
     title: "Support when you need it",
-    body: "Pay-as-you-go changes with no monthly retainer, or an optional Care Plan if you would rather we handled everything.",
+    body: "Pay-as-you-go Mojak changes with no labour retainer, or an optional Care Plan that can also bundle hosting and platform usage.",
   },
 ];
 
@@ -141,7 +141,7 @@ export const industries: Industry[] = [
 export const faqs = [
   {
     q: "Is this affordable for a small business?",
-    a: "That is who we build for. An assistant on two channels starts at KES 20,000 as a one-off, and a full website with an assistant, search setup and hosting starts at KES 60,000. There is no compulsory monthly fee — after launch you pay only when you need a change.",
+    a: "That is who we build for. An assistant on two channels starts at KES 20,000 as a one-off, and a full website with an assistant, search setup and hosting starts at KES 60,000. There is no forced Mojak labour fee after launch — you pay us for changes when you need them. Platform costs like WhatsApp or paid AI usage are separate and explained before go-live.",
   },
   {
     q: "How long does it take?",
@@ -165,11 +165,15 @@ export const faqs = [
   },
   {
     q: "Do you only work in Nairobi?",
-    a: "We are based in Nairobi and meet CBD businesses in person. Everything we build works anywhere in Kenya — our hotel client is in Machakos — and we handle upcountry clients over WhatsApp and calls.",
+    a: "We are based in Nairobi and meet CBD businesses in person. Everything we build works anywhere in Kenya — including hospitality work in Machakos — and we handle upcountry clients over WhatsApp and calls.",
   },
   {
     q: "Can I see something you have actually built?",
-    a: "Yes, and you should ask that of anyone selling you software. Two working builds are on our work page — a hotel site with a concierge assistant, and a solar retailer's catalogue with an AI product advisor. Both open on your phone.",
+    a: "Yes, and you should ask that of anyone selling you software. Our work page shows live examples you can open on your phone — a hotel site with an AI concierge and staff messaging tools, and a solar retailer's catalogue with an AI product advisor.",
+  },
+  {
+    q: "Is there really no monthly cost after setup?",
+    a: "There is no forced monthly Mojak labour fee. Keeping WhatsApp, social messaging and paid AI models live still has platform costs that run continuously, plus hosting. We put those numbers in the quote before anything goes live. The optional Care Plan can bundle them with support into one monthly figure.",
   },
 ];
 

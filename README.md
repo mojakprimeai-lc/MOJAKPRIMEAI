@@ -68,10 +68,10 @@ The chat widget is the same architecture we sell to clients, running on our own 
 reference (`MP-XXXXXXX`) and logs it server-side. Point that log at the company inbox, a Google
 Sheet or a CRM and the flow is live end to end.
 
-## Demos shown to customers
+## Examples shown to customers
 
-- **Visum Park Hotel** — live at [visumhotel.netlify.app](https://visumhotel.netlify.app/), linked from `/work`.
-- **Zelt Solar & Electricals** — live at [zeltsolarandelectricals.netlify.app](https://zeltsolarandelectricals.netlify.app/), linked from `/work`.
+- **Visum Park Hotel** — live example at [visumhotel.netlify.app](https://visumhotel.netlify.app/). They already had a site; this shows the upgraded guest experience plus AI concierge, messaging and automation.
+- **Zelt Solar & Electricals** — live example at [zeltsolarandelectricals.netlify.app](https://zeltsolarandelectricals.netlify.app/).
   A local copy also sits in `public/demos/zelt/` as a fallback if Netlify is down during a pitch.
 
 Screenshots on the case study pages are real captures, regenerated with:

@@ -24,7 +24,7 @@ export default function SolutionsPage() {
         title="Everything we build, and exactly what each one fixes"
         lede="Four offerings. Start with whichever is costing you the most money today — they work together, but none of them depends on the others."
         primary={{ label: "Book a free walkthrough", href: "/contact" }}
-        secondary={{ label: "See two live builds", href: "/work" }}
+        secondary={{ label: "See live examples", href: "/work" }}
       />
 
       <Section tone="paper">

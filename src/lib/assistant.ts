@@ -36,7 +36,7 @@ const contactAction: AssistantAction = {
 };
 
 const workAction: AssistantAction = {
-  label: "See two live builds",
+  label: "See live examples",
   href: "/work",
   kind: "internal",
 };
@@ -117,7 +117,7 @@ const entries: Entry[] = [
     ],
     weight: 1.2,
     reply:
-      "Three starting points, all one-off setup fees:\n\n• Starter — from KES 20,000. An assistant on two channels.\n• Business — from KES 60,000. Website with assistant, WhatsApp, search setup, domain and hosting for a year.\n• Commerce & Operations — from KES 150,000, quoted per business. Online ordering with M-Pesa, stock-aware catalogue, delivery tracking, staff portal or an AI POS rollout.\n\nThere is no compulsory monthly fee. Afterwards you pay only for changes: KES 500–800 for a minor update, KES 1,000 for a new assistant answer, KES 1,500–2,500 for troubleshooting. Payment is half to start, half on handover.",
+      "Three starting points, all one-off setup fees:\n\n• Starter — from KES 20,000. An assistant on two channels.\n• Business — from KES 60,000. Website with assistant, WhatsApp, search setup, domain and hosting for the first year.\n• Commerce & Operations — from KES 150,000, quoted per business. Online ordering with M-Pesa, stock-aware catalogue, delivery tracking, staff portal or an AI POS rollout.\n\nThere is no forced Mojak labour fee after launch. You pay us for changes when you need them. Platform costs — WhatsApp conversation fees, paid AI usage, hosting — run separately and are explained before go-live. Payment is half to start, half on handover.",
     actions: [pricingAction, contactAction],
     followUps: ["Is there a monthly fee?", "What does maintenance cost?", "What is in the Business package?"],
   },
@@ -128,15 +128,18 @@ const entries: Entry[] = [
       "ongoing", "update", "changes", "fix", "warranty",
     ],
     reply:
-      "No forced monthly fee. After launch you pay only when work happens: KES 500–800 for a price or content change, KES 1,000 for a new assistant answer, KES 1,500–2,500 for troubleshooting, and a separate quote for anything major like a platform change.\n\nIf you would rather have everything handled, the optional Care Plan starts at KES 2,500 a month and covers hosting, AI running costs, monitoring, backups, priority response and small monthly changes. You can cancel any month.",
+      "No forced Mojak labour retainer. After launch you pay us only when work happens: KES 500–800 for a price or content change, KES 1,000 for a new assistant answer, KES 1,500–2,500 for troubleshooting, and a separate quote for anything major like a platform change.\n\nWhatsApp, paid AI models and hosting still have continuous platform costs. We put those in the quote before go-live. If you would rather have one monthly figure, the optional Care Plan starts at KES 2,500 a month and can bundle hosting, usage, monitoring, backups, priority response and small changes. You can cancel any month.",
     actions: [pricingAction, mailAction],
     followUps: ["What are AI running costs?", "How much is hosting?", "Can I cancel the Care Plan?"],
   },
   {
     topic: "ai-costs",
-    keywords: ["ai cost", "api", "running cost", "token", "openai", "model cost", "per message cost"],
+    keywords: [
+      "ai cost", "api", "running cost", "token", "openai", "model cost", "per message cost",
+      "whatsapp cost", "whatsapp fee", "meta fee", "platform cost", "usage cost",
+    ],
     reply:
-      "It depends on which kind of assistant you have. One that answers from your own written information has no per-message cost at all. One that uses a paid AI model has a small cost per conversation.\n\nWe tell you which you are getting and what it costs before it is switched on, and the Care Plan can bundle it so the number is predictable each month.",
+      "Two different kinds of cost.\n\n• Mojak work — one-off to build, then pay-as-you-go for changes, unless you choose the Care Plan.\n• Platform usage — continuous. WhatsApp Business conversation fees from Meta, paid AI model usage where that is switched on, and hosting.\n\nAn assistant that answers only from your written information has no per-message AI cost. One that uses a paid model has a small cost per conversation. We tell you which you are getting and what the platform numbers look like before anything goes live. The Care Plan can bundle usage so the monthly figure is predictable.",
     actions: [pricingAction, contactAction],
     followUps: ["Which type do I need?", "What is the Care Plan?", "How much is the Business package?"],
   },
@@ -156,7 +159,7 @@ const entries: Entry[] = [
     ],
     weight: 1.15,
     reply:
-      "Two live builds you can open right now.\n\n• Visum Park Hotel, Machakos — full website, a 24-hour concierge assistant, a reservation enquiry flow, and a staff desk that sends offers to guests who opted in. Live at visumhotel.netlify.app.\n• Zelt Solar & Electricals, Nairobi — product catalogue with an AI solar advisor that sizes systems and estimates savings. Live at zeltsolarandelectricals.netlify.app. Online ordering, M-Pesa and delivery tracking are in progress.\n\nOpen either one on your phone and test the assistant yourself.",
+      "Here are live examples you can open on your phone and test yourself.\n\n• Visum Park Hotel, Machakos — they already had a website. We rebuilt the guest experience and added a 24-hour AI concierge, reservation capture, staff messaging for opted-in guests, and social automation around it. Live at visumhotel.netlify.app.\n• Zelt Solar & Electricals, Nairobi — product catalogue with an AI solar advisor that sizes systems and estimates savings. Live at zeltsolarandelectricals.netlify.app. Online ordering, M-Pesa and delivery tracking are in progress.\n\nOpen either one and put the assistant through its paces.",
     actions: [
       workAction,
       { label: "Visum Park Hotel, live", href: "https://visumhotel.netlify.app/", kind: "external" },
@@ -248,7 +251,7 @@ const entries: Entry[] = [
       "mombasa", "kisumu", "area", "meet",
     ],
     reply:
-      `We are based in ${company.city}, ${company.country}, and we meet CBD businesses in person — an agent can come to your shop and show you the systems on a phone.\n\nEverything we build works anywhere in Kenya. Our hotel client is in Machakos, and we run upcountry projects over WhatsApp and calls. Working hours are ${company.hours.toLowerCase()}.`,
+      `We are based in ${company.city}, ${company.country}, and we meet CBD businesses in person — an agent can come to your shop and show you live examples on a phone.\n\nEverything we build works anywhere in Kenya, including hospitality work in Machakos, and we run upcountry projects over WhatsApp and calls. Working hours are ${company.hours.toLowerCase()}.`,
     actions: [contactAction, mailAction],
     followUps: ["Can someone visit my shop?", "Can I see your work?", "How much does it cost?"],
   },
@@ -334,7 +337,7 @@ export function answer(rawQuery: string): AssistantAnswer {
     return {
       topic: "greeting",
       reply:
-        "Karibu. I can explain what we build, what it costs, how long it takes, or show you two systems we already have running. Where would you like to start?",
+        "Karibu. I can explain what we build, what it costs, how long it takes, or show you live examples you can open on your phone. Where would you like to start?",
       actions: [workAction, pricingAction],
       followUps: quickPrompts.slice(0, 3),
     };
@@ -359,7 +362,7 @@ export function answer(rawQuery: string): AssistantAnswer {
     return {
       topic: "fallback",
       reply:
-        `That one is better answered by a person, so nothing gets promised that we cannot deliver.\n\nEmail ${company.email} or book a free walkthrough and we will answer it properly. Meanwhile I am solid on what we build, pricing, timelines, maintenance and the work we have already delivered.`,
+        `That one is better answered by a person, so nothing gets promised that we cannot deliver.\n\nEmail ${company.email} or book a free walkthrough and we will answer it properly. Meanwhile I am solid on what we build, pricing, timelines, maintenance and the live examples on our work page.`,
       actions: [contactAction, mailAction],
       followUps: quickPrompts.slice(0, 3),
     };

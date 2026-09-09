@@ -14,11 +14,11 @@ export function Proof() {
           <SectionHeading
             tone="light"
             eyebrow="Proof, not promises"
-            title="Two systems we built, both open on your phone right now"
-            lede="Ask any software company to show you something working. These are ours — a hotel and a solar retailer. Open them, message the assistants, and judge for yourself."
+            title="Selected work you can open on your phone right now"
+            lede="Ask any software company to show you something working. These are live examples — a hotel upgrade with AI and messaging tools, and a solar retailer's catalogue with an advisor. Open them, message the assistants, and judge for yourself."
           />
           <Link href="/work" className="btn btn-on-dark shrink-0">
-            All our work
+            All examples
             <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden />
           </Link>
         </div>

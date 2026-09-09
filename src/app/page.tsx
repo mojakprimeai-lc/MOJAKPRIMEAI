@@ -17,7 +17,7 @@ import { faqs } from "@/lib/content";
 export const metadata: Metadata = {
   title: "AI websites, WhatsApp assistants and smart POS for Kenyan businesses",
   description:
-    "Mojak Prime AI builds AI-powered websites, chat assistants for WhatsApp, Facebook and Instagram, and AI point-of-sale systems with stock alerts and profit insights. Nairobi-based, from KES 20,000, no forced monthly fees.",
+    "Mojak Prime AI builds AI-powered websites, chat assistants for WhatsApp, Facebook and Instagram, and AI point-of-sale systems with stock alerts and profit insights. Nairobi-based, from KES 20,000. No forced Mojak labour fees.",
   alternates: { canonical: "/" },
 };
 

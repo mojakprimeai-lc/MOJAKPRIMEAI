@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     template: `%s — ${company.name}`,
   },
   description:
-    "Mojak Prime AI builds AI-powered websites, WhatsApp and social chat assistants, and AI point-of-sale systems for businesses in Nairobi and across Kenya. Setup from KES 20,000, no forced monthly fees.",
+    "Mojak Prime AI builds AI-powered websites, WhatsApp and social chat assistants, and AI point-of-sale systems for businesses in Nairobi and across Kenya. Setup from KES 20,000. No forced Mojak labour fees — platform usage explained upfront.",
   keywords: [
     "AI solutions Kenya",
     "AI website Nairobi",
@@ -56,13 +56,13 @@ export const metadata: Metadata = {
     siteName: company.legalName,
     title: `${company.legalName} — AI systems that run parts of your business for you`,
     description:
-      "AI-powered websites, chat assistants for WhatsApp and social media, and smart point-of-sale systems built for Kenyan businesses. See two live builds.",
+      "AI-powered websites, chat assistants for WhatsApp and social media, and smart point-of-sale systems built for Kenyan businesses. See live examples you can open on your phone.",
   },
   twitter: {
     card: "summary_large_image",
     title: `${company.legalName} — AI for Kenyan businesses`,
     description:
-      "AI websites, WhatsApp assistants and smart POS. Built in Nairobi, priced for SMEs, with no forced monthly fees.",
+      "AI websites, WhatsApp assistants and smart POS. Built in Nairobi, priced for SMEs. No forced Mojak labour fees.",
   },
   robots: {
     index: true,

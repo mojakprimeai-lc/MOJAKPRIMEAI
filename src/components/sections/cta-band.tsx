@@ -6,7 +6,7 @@ import { company } from "@/lib/company";
 
 export function CtaBand({
   title = "Let us look at your business for free",
-  body = "An agent comes to your shop or meets you on WhatsApp, looks at how you sell today, and shows you the two systems we already have running. If there is nothing worth fixing, we will say so.",
+  body = "An agent comes to your shop or meets you on WhatsApp, looks at how you sell today, and opens live examples on a phone so you can test them yourself. If there is nothing worth fixing, we will say so.",
   primary = { label: "Book a free walkthrough", href: "/contact" },
 }: {
   title?: string;
