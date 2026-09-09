@@ -25,9 +25,9 @@ export function Proof() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {caseStudies.map((study, index) => (
-            <Reveal key={study.slug} delay={index * 90}>
-              <article className="card-dark flex h-full flex-col overflow-hidden">
-                <div className="relative aspect-16/10 overflow-hidden border-b border-azure-3/12 bg-ink-2">
+            <Reveal key={study.slug} delay={index * 90} className="min-w-0 h-full">
+              <article className="card-dark flex h-full min-w-0 flex-col overflow-hidden">
+                <div className="relative aspect-16/10 min-w-0 overflow-hidden border-b border-azure-3/12 bg-ink-2">
                   <Image
                     src={study.shots[0].src}
                     alt={study.shots[0].alt}
@@ -37,7 +37,7 @@ export function Proof() {
                   />
                 </div>
 
-                <div className="flex flex-1 flex-col p-6 md:p-7">
+                <div className="flex min-w-0 flex-1 flex-col p-6 md:p-7">
                   <div className="flex flex-wrap items-center gap-2">
                     <Pill tone="light">{study.sector}</Pill>
                     <Pill tone={study.status === "Live" ? "mint" : "amber"}>
@@ -46,9 +46,11 @@ export function Proof() {
                     </Pill>
                   </div>
 
-                  <h3 className="mt-5 text-2xl text-white">{study.client}</h3>
-                  <p className="mt-1 text-[0.875rem] text-azure-3/50">{study.location}</p>
-                  <p className="mt-4 flex-1 text-azure-3/75">{study.summary}</p>
+                  <h3 className="mt-5 text-balance text-2xl text-white">{study.client}</h3>
+                  <p className="mt-1.5 text-[0.875rem] text-azure-3/65">{study.location}</p>
+                  <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-azure-3/90">
+                    {study.summary}
+                  </p>
 
                   <div className="mt-6 flex flex-wrap gap-3">
                     <a

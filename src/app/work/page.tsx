@@ -39,22 +39,23 @@ export default function WorkPage() {
 
           <div className="space-y-8">
             {caseStudies.map((study, index) => (
-              <Reveal key={study.slug} delay={index * 80}>
+              <Reveal key={study.slug} delay={index * 80} className="min-w-0">
                 <article className="card overflow-hidden">
-                  <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
-                    {/* 16:10 matches the capture ratio exactly, so nothing is cropped */}
-                    <div className="relative aspect-16/10 border-b border-ink/8 bg-paper-2 lg:border-b-0 lg:border-r">
+                  {/* minmax(0, …) lets the text column shrink and wrap; without it
+                      grid min-width:auto + overflow-hidden clips mid-word. */}
+                  <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
+                    <div className="relative aspect-16/10 min-w-0 overflow-hidden border-b border-ink/8 bg-paper-2 lg:border-b-0 lg:border-r">
                       <Image
                         src={study.shots[0].src}
                         alt={study.shots[0].alt}
                         fill
-                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        sizes="(max-width: 1024px) 100vw, 48vw"
                         className="object-cover object-top"
                         priority={index === 0}
                       />
                     </div>
 
-                    <div className="p-6 md:p-9">
+                    <div className="min-w-0 p-6 sm:p-7 md:p-8 lg:p-9">
                       <div className="flex flex-wrap items-center gap-2">
                         <Pill>{study.sector}</Pill>
                         <Pill tone={study.status === "Live" ? "mint" : "amber"}>
@@ -64,9 +65,11 @@ export default function WorkPage() {
                         <Pill>{study.year}</Pill>
                       </div>
 
-                      <h2 className="mt-5 text-2xl md:text-3xl">{study.client}</h2>
-                      <p className="mt-1 text-[0.9375rem] text-ink/50">{study.location}</p>
-                      <p className="mt-4 text-ink/75">{study.summary}</p>
+                      <h2 className="mt-5 text-balance text-2xl md:text-3xl">{study.client}</h2>
+                      <p className="mt-1.5 text-[0.9375rem] text-ink/65">{study.location}</p>
+                      <p className="mt-4 text-[0.9875rem] leading-relaxed text-ink/85">
+                        {study.summary}
+                      </p>
 
                       <h3 className="eyebrow mt-7 text-azure-deep">What it proves</h3>
                       <CheckList items={study.proves.slice(0, 3)} className="mt-4" />
