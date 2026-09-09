@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# The App Router needs this adapter. Without it Netlify publishes .next as
+# static files and the home page 404s.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

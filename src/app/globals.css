@@ -1,0 +1,303 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Surfaces */
+  --color-ink: #05070e;
+  --color-ink-2: #0a1020;
+  --color-ink-3: #111a30;
+  --color-ink-4: #1c2a48;
+
+  --color-paper: #f8fafc;
+  --color-paper-2: #eef2f9;
+  --color-paper-3: #e2e8f2;
+
+  /* Brand */
+  --color-azure: #0b7ff5;
+  --color-azure-2: #4fb0ff;
+  --color-azure-3: #a9d8ff;
+  --color-azure-deep: #054a96;
+
+  --color-mint: #00c48c;
+  --color-mint-2: #34e0ac;
+  --color-amber: #f2b134;
+
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-lift: 0 22px 50px -28px rgba(5, 7, 14, 0.35);
+  --shadow-lift-lg: 0 46px 110px -46px rgba(5, 7, 14, 0.55);
+  --shadow-glow: 0 0 0 1px rgba(79, 176, 255, 0.18), 0 24px 60px -30px rgba(11, 127, 245, 0.55);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-drift: drift 24s ease-in-out infinite;
+  --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-expo) infinite;
+  --animate-rise: rise 0.7s var(--ease-out-expo) both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0) scale(1.07);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 196, 140, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 196, 140, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 196, 140, 0);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-h: 4.25rem;
+  }
+
+  * {
+    border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* 17px base: comfortable for every age group, on a phone in daylight. */
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-azure);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-azure) 28%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-x {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .lede {
+    font-size: 1.125rem;
+    line-height: 1.65;
+  }
+
+  @media (min-width: 768px) {
+    .lede {
+      font-size: 1.25rem;
+    }
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    /* 48px min target for thumbs */
+    min-height: 3rem;
+    padding-inline: 1.375rem;
+    transition:
+      transform 0.18s var(--ease-out-expo),
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      color 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .btn:active {
+    transform: translateY(1px);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--color-azure-deep), var(--color-azure));
+    color: #fff;
+    box-shadow: 0 14px 34px -16px rgba(11, 127, 245, 0.85);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 20px 44px -16px rgba(11, 127, 245, 0.95);
+  }
+
+  .btn-dark {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-dark:hover {
+    background: var(--color-ink-3);
+  }
+
+  .btn-outline {
+    border: 1px solid color-mix(in oklab, var(--color-ink) 18%, transparent);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--color-ink);
+  }
+
+  .btn-outline:hover {
+    border-color: color-mix(in oklab, var(--color-azure) 55%, transparent);
+    background: #fff;
+  }
+
+  .btn-on-dark {
+    border: 1px solid rgba(169, 216, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
+    color: #eaf4ff;
+  }
+
+  .btn-on-dark:hover {
+    border-color: rgba(169, 216, 255, 0.55);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .card {
+    border-radius: 1.25rem;
+    border: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
+    background: #fff;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .card-dark {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(169, 216, 255, 0.14);
+    background: linear-gradient(160deg, rgba(17, 26, 48, 0.9), rgba(10, 16, 32, 0.95));
+  }
+
+  .rule {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--color-azure) 35%, transparent),
+      transparent
+    );
+  }
+
+  /* Faint engineering grid used behind dark sections */
+  .grid-field {
+    background-image:
+      linear-gradient(rgba(169, 216, 255, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(169, 216, 255, 0.06) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  /*
+   * Reveals are opt-in: content is visible by default and only starts hidden
+   * once the inline script in the document head confirms JavaScript is running.
+   * If a phone on weak data never gets the bundle, the page still reads.
+   */
+  .reveal {
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+  }
+
+  html.js .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .reveal:not(.is-visible) {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .prose-clean p + p {
+    margin-top: 1rem;
+  }
+}

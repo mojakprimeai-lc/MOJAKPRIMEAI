@@ -1,0 +1,104 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight, CircleDot, Smartphone } from "lucide-react";
+
+import { CtaBand } from "@/components/sections/cta-band";
+import { PageHero } from "@/components/page-hero";
+import { Reveal } from "@/components/ui/reveal";
+import { CheckList, Container, Pill, Section } from "@/components/ui/primitives";
+import { caseStudies } from "@/lib/work";
+
+export const metadata: Metadata = {
+  title: "Our work — live AI systems we have built in Kenya",
+  description:
+    "Two client systems built by Mojak Prime AI: Visum Park Hotel's website with a 24-hour concierge assistant and staff reservation desk, and Zelt Solar & Electricals' product catalogue with an AI solar advisor. Both open on your phone.",
+  alternates: { canonical: "/work" },
+};
+
+export default function WorkPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Our work"
+        title="Systems you can open, message and test before you pay us anything"
+        lede="Anyone can promise AI. These are two builds running in the real world — one hotel, one retailer. Open them on your phone and put the assistants through their paces."
+        primary={{ label: "Book a free walkthrough", href: "/contact" }}
+      />
+
+      <Section tone="paper">
+        <Container>
+          <div className="mb-10 flex items-start gap-4 rounded-2xl border border-azure/20 bg-azure/6 p-5">
+            <Smartphone className="mt-0.5 h-5 w-5 shrink-0 text-azure-deep" strokeWidth={1.75} aria-hidden />
+            <p className="text-[0.9375rem] text-ink/75">
+              <span className="font-semibold text-ink">Meeting one of our agents?</span> Ask them to open either
+              of these on their phone and hand it to you. Everything below is live, and nothing on this page is
+              a mockup.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {caseStudies.map((study, index) => (
+              <Reveal key={study.slug} delay={index * 80}>
+                <article className="card overflow-hidden">
+                  <div className="grid lg:grid-cols-[1.05fr_0.95fr]">
+                    {/* 16:10 matches the capture ratio exactly, so nothing is cropped */}
+                    <div className="relative aspect-16/10 border-b border-ink/8 bg-paper-2 lg:border-b-0 lg:border-r">
+                      <Image
+                        src={study.shots[0].src}
+                        alt={study.shots[0].alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        className="object-cover object-top"
+                        priority={index === 0}
+                      />
+                    </div>
+
+                    <div className="p-6 md:p-9">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <Pill>{study.sector}</Pill>
+                        <Pill tone={study.status === "Live" ? "mint" : "amber"}>
+                          <CircleDot className="h-3 w-3" strokeWidth={2.5} aria-hidden />
+                          {study.status}
+                        </Pill>
+                        <Pill>{study.year}</Pill>
+                      </div>
+
+                      <h2 className="mt-5 text-2xl md:text-3xl">{study.client}</h2>
+                      <p className="mt-1 text-[0.9375rem] text-ink/50">{study.location}</p>
+                      <p className="mt-4 text-ink/75">{study.summary}</p>
+
+                      <h3 className="eyebrow mt-7 text-azure-deep">What it proves</h3>
+                      <CheckList items={study.proves.slice(0, 3)} className="mt-4" />
+
+                      <div className="mt-7 flex flex-wrap gap-3">
+                        <a
+                          href={study.demo.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary"
+                        >
+                          {study.demo.label}
+                          <ArrowUpRight className="h-4 w-4" strokeWidth={2} aria-hidden />
+                        </a>
+                        <Link href={`/work/${study.slug}`} className="btn btn-outline">
+                          Read the full build
+                          <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <CtaBand
+        title="Your business could be the next one on this page"
+        body="We build the first version fast, you test it as a customer, and it goes live when you are happy with it. The walkthrough that starts it is free."
+      />
+    </>
+  );
+}
