@@ -99,15 +99,43 @@ const entries: Entry[] = [
     keywords: [
       "pos", "point of sale", "till", "cash register", "stock", "inventory", "counting",
       "restock", "reorder", "sales system", "shop system", "barcode", "receipt",
+      "smart till", "machine", "machines", "tablet", "printer", "hardware", "scanner",
     ],
     weight: 1.1,
     reply:
-      "The AI point of sale starts at KES 150,000 and is quoted per business, because it is configured with your real products and prices.\n\nIt records sales, counts stock down in real time, warns you before fast movers run out, suggests reorder quantities from how items actually sell in your shop, flags dead stock, shows profit per item rather than just sales, and sends you a closing summary on your phone. It usually runs on a computer or tablet you already own, and we start with a one-week pilot on a single counter.",
+      "AI point of sale starts with Smart Till at KES 30,000 — a complete till: sales recorded as they happen, live stock, low-stock alerts, and a closing summary on your phone. Staff are trained in person. Prices are for software; it usually runs on a computer or tablet you already own.\n\nSmart Till Plus is KES 65,000 and adds profit per item, reorder suggestions, dead stock alerts, and a customer list you can reach on WhatsApp. Already on Smart Till? Upgrade for KES 35,000.\n\nFull Business is from KES 120,000, quoted per business — the till plus an online shop with M-Pesa, delivery tracking and a staff back-office. That is for selling at the counter and online, not a till-only product.",
     actions: [
       { label: "AI point of sale in detail", href: "/solutions/ai-point-of-sale", kind: "internal" },
+      pricingAction,
+    ],
+    followUps: ["Do I need to buy machines?", "What is Smart Till Plus?", "What is Full Business?"],
+  },
+  {
+    topic: "smart-till-plus",
+    keywords: ["smart till plus", "profit per item", "dead stock", "reorder suggestion"],
+    weight: 1.85,
+    reply:
+      "Smart Till Plus is KES 65,000 as a one-off. It includes everything in Smart Till, and adds profit per item, reorder suggestions from how your shop sells, dead stock alerts, a customer list with WhatsApp offers, plus priority support and one free update in the first year.\n\nIf you already have Smart Till, the upgrade is KES 35,000 — the difference only.",
+    actions: [
+      { label: "See POS pricing", href: "/pricing", kind: "internal" },
       contactAction,
     ],
-    followUps: ["Do I need to buy machines?", "Can I start with one counter?", "Is my data safe?"],
+    followUps: ["What is Smart Till?", "What is Full Business?", "Book a walkthrough"],
+  },
+  {
+    topic: "full-business",
+    keywords: [
+      "full business", "commerce", "commerce package", "online shop", "online store",
+      "sell online", "delivery tracking", "back office", "back-office",
+    ],
+    weight: 1.2,
+    reply:
+      "Full Business System starts from KES 120,000 and is quoted per business. It is Smart Till Plus plus an online shop with M-Pesa, stock shared between the counter and the web, delivery tracking, a staff back-office, and an AI assistant on your website or WhatsApp.\n\nIt is for businesses selling at the counter and online — not a till-only product. Most shops start on Smart Till (KES 30,000) or Plus (KES 65,000). Written quote before work starts.",
+    actions: [
+      { label: "See POS pricing", href: "/pricing", kind: "internal" },
+      contactAction,
+    ],
+    followUps: ["How much is Smart Till?", "Do I need to buy machines?", "Book a walkthrough"],
   },
   {
     topic: "pricing",
@@ -117,9 +145,9 @@ const entries: Entry[] = [
     ],
     weight: 1.2,
     reply:
-      "Three starting points, all one-off setup fees:\n\n• Starter — from KES 20,000. An assistant on two channels.\n• Business — from KES 60,000. Website with assistant, WhatsApp, search setup, domain and hosting for the first year.\n• Commerce & Operations — from KES 150,000, quoted per business. Online ordering with M-Pesa, stock-aware catalogue, delivery tracking, staff portal or an AI POS rollout.\n\nThere is no forced Mojak labour fee after launch. You pay us for changes when you need them. Platform costs — WhatsApp conversation fees, paid AI usage, hosting — run separately and are explained before go-live. Payment is half to start, half on handover.",
+      "Published starting points, all one-off Mojak setup fees:\n\n• Starter — from KES 20,000. An assistant on two channels.\n• Business — from KES 60,000. Website with assistant, WhatsApp, search setup, domain and hosting for the first year. A website with assistant on its own starts at KES 50,000.\n• Smart Till — KES 30,000. A complete working till.\n• Smart Till Plus — KES 65,000. Till plus profit, reorders, dead stock and WhatsApp offers. Upgrade from Smart Till is KES 35,000.\n• Full Business System — from KES 120,000, quoted per business. Shop plus online: till, web shop, M-Pesa, delivery tracking, staff back-office.\n\nThere is no forced Mojak labour fee after launch. You pay us for changes when you need them. Platform costs — WhatsApp conversation fees, paid AI usage, hosting — run separately and are explained before go-live. Hardware such as a tablet or printer is not in those prices. Payment is half to start, half on handover.",
     actions: [pricingAction, contactAction],
-    followUps: ["Is there a monthly fee?", "What does maintenance cost?", "What is in the Business package?"],
+    followUps: ["Is there a monthly fee?", "How much is Smart Till?", "What is in the Business package?"],
   },
   {
     topic: "maintenance",
@@ -147,7 +175,7 @@ const entries: Entry[] = [
     topic: "timeline",
     keywords: ["how long", "timeline", "duration", "when", "fast", "quick", "deadline", "delivery time", "weeks"],
     reply:
-      "An assistant is usually answering customers in under a week. A full website with an assistant takes one to three weeks, and the main thing that slows it down is waiting for your photos and price list. A point-of-sale rollout starts with a one-week pilot at one counter before we go further.",
+      "An assistant is usually answering customers in under a week. A full website with an assistant takes one to three weeks, and the main thing that slows it down is waiting for your photos and price list. A Smart Till is set up on one counter with your real products; we train your team in person before we leave.",
     actions: [contactAction, workAction],
     followUps: ["What do you need from me?", "How much does it cost?", "Can I see your work?"],
   },
@@ -201,7 +229,7 @@ const entries: Entry[] = [
       { label: "Growth services", href: "/solutions/growth-services", kind: "internal" },
       contactAction,
     ],
-    followUps: ["Do I need a paybill?", "Can customers order online?", "How much is the Commerce package?"],
+    followUps: ["Do I need a paybill?", "Can customers order online?", "How much is Full Business?"],
   },
   {
     topic: "seo",
@@ -275,7 +303,7 @@ const entries: Entry[] = [
       "how long have you", "trust you", "new company",
     ],
     reply:
-      `${company.legalName} is a Nairobi company building AI systems for everyday businesses — websites, chat assistants and point of sale.\n\nWe are young, and we would rather you judge us on what we have built than on how long we have existed. Two client systems are live and you can open both from the work page and test them yourself before you pay us anything.`,
+      `${company.legalName} is a Nairobi company building AI systems for everyday businesses — websites, chat assistants and point of sale.\n\nWe would rather you judge us on live examples you can open on your phone than on a pitch. They are on the work page — test the assistants yourself before you pay us anything.`,
     actions: [workAction, { label: "About the company", href: "/about", kind: "internal" }],
     followUps: ["Can I see your work?", "How much does it cost?", "Book a walkthrough"],
   },

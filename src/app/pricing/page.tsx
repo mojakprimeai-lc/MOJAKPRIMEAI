@@ -14,13 +14,13 @@ import {
   SectionHeading,
   cx,
 } from "@/components/ui/primitives";
-import { addOns, carePlan, careTasks, pricingNotes, tiers } from "@/lib/pricing";
+import { addOns, carePlan, careTasks, packages, posTiers, pricingNotes, type Tier } from "@/lib/pricing";
 import { faqs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Pricing — what an AI website, assistant or POS costs in Kenya",
   description:
-    "Published pricing from Mojak Prime AI. Chat assistants from KES 20,000, a website with an AI assistant from KES 60,000, commerce and POS builds from KES 150,000. One-off setup, pay-as-you-go Mojak support, platform usage explained upfront.",
+    "Published pricing from Mojak Prime AI. Chat assistants from KES 20,000, a website with an AI assistant from KES 60,000, Smart Till from KES 30,000, Full Business from KES 120,000. One-off setup, pay-as-you-go Mojak support, platform usage explained upfront.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -33,6 +33,73 @@ const pricingFaqs = faqs.filter((item) =>
   ].includes(item.q),
 );
 
+function TierCards({ items, columns = 2 }: { items: readonly Tier[]; columns?: 2 | 3 }) {
+  return (
+    <div className={cx("grid gap-5", columns === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2")}>
+      {items.map((tier, index) => (
+        <Reveal key={tier.id} delay={index * 80}>
+          <article
+            className={cx(
+              "flex h-full flex-col rounded-3xl p-6 md:p-8",
+              tier.featured
+                ? "bg-ink text-paper shadow-lift-lg ring-2 ring-azure/40"
+                : "border border-ink/10 bg-white",
+            )}
+          >
+            <div className="flex items-center justify-between gap-3">
+              <h2 className={cx("text-xl", tier.featured && "text-white")}>{tier.name}</h2>
+              {tier.featured ? <Pill tone="light">{tier.badge ?? "Most chosen"}</Pill> : null}
+            </div>
+
+            <p className={cx("mt-2 text-[0.9375rem]", tier.featured ? "text-azure-3/60" : "text-ink/55")}>
+              {tier.audience}
+            </p>
+
+            <p className="mt-6">
+              <span
+                className={cx(
+                  "font-display text-3xl font-semibold tracking-tight md:text-4xl",
+                  tier.featured ? "text-white" : "text-ink",
+                )}
+              >
+                {tier.from}
+              </span>
+              <span className={cx("ml-2 text-[0.875rem]", tier.featured ? "text-azure-3/55" : "text-ink/50")}>
+                {tier.cadence}
+              </span>
+            </p>
+
+            <p
+              className={cx(
+                "mt-4 text-[0.9375rem] leading-relaxed",
+                tier.featured ? "text-azure-3/75" : "text-ink/70",
+              )}
+            >
+              {tier.summary}
+            </p>
+
+            <CheckList items={tier.includes} tone={tier.featured ? "light" : "dark"} className="mt-6 flex-1" />
+
+            {tier.note ? (
+              <p className={cx("mt-4 text-[0.875rem] leading-relaxed", tier.featured ? "text-mint-2" : "text-ink/60")}>
+                {tier.note}
+              </p>
+            ) : null}
+
+            <Link
+              href={tier.cta.href}
+              className={cx("btn mt-7 w-full", tier.featured ? "btn-primary" : "btn-outline")}
+            >
+              {tier.cta.label}
+              <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden />
+            </Link>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
 export default function PricingPage() {
   return (
     <>
@@ -44,68 +111,28 @@ export default function PricingPage() {
         secondary={{ label: "See what we have built", href: "/work" }}
       />
 
-      {/* Tiers */}
       <Section tone="paper">
         <Container>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {tiers.map((tier, index) => (
-              <Reveal key={tier.id} delay={index * 80}>
-                <article
-                  className={cx(
-                    "flex h-full flex-col rounded-3xl p-6 md:p-8",
-                    tier.featured
-                      ? "bg-ink text-paper shadow-lift-lg ring-2 ring-azure/40"
-                      : "border border-ink/10 bg-white",
-                  )}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <h2 className={cx("text-xl", tier.featured && "text-white")}>{tier.name}</h2>
-                    {tier.featured ? <Pill tone="light">Most chosen</Pill> : null}
-                  </div>
+          <SectionHeading
+            eyebrow="Websites and assistants"
+            title="Get found, and never miss a customer message"
+            lede="A website with a built-in assistant from KES 50,000 on its own. These two packages are the usual starting point."
+          />
+          <div className="mt-10">
+            <TierCards items={packages} columns={2} />
+          </div>
+        </Container>
+      </Section>
 
-                  <p className={cx("mt-2 text-[0.9375rem]", tier.featured ? "text-azure-3/60" : "text-ink/55")}>
-                    {tier.audience}
-                  </p>
-
-                  <p className="mt-6">
-                    <span
-                      className={cx(
-                        "font-display text-3xl font-semibold tracking-tight md:text-4xl",
-                        tier.featured ? "text-white" : "text-ink",
-                      )}
-                    >
-                      {tier.from}
-                    </span>
-                    <span className={cx("ml-2 text-[0.875rem]", tier.featured ? "text-azure-3/55" : "text-ink/50")}>
-                      {tier.cadence}
-                    </span>
-                  </p>
-
-                  <p
-                    className={cx(
-                      "mt-4 text-[0.9375rem] leading-relaxed",
-                      tier.featured ? "text-azure-3/75" : "text-ink/70",
-                    )}
-                  >
-                    {tier.summary}
-                  </p>
-
-                  <CheckList
-                    items={tier.includes}
-                    tone={tier.featured ? "light" : "dark"}
-                    className="mt-6 flex-1"
-                  />
-
-                  <Link
-                    href={tier.cta.href}
-                    className={cx("btn mt-7 w-full", tier.featured ? "btn-primary" : "btn-outline")}
-                  >
-                    {tier.cta.label}
-                    <ArrowRight className="h-4 w-4" strokeWidth={2} aria-hidden />
-                  </Link>
-                </article>
-              </Reveal>
-            ))}
+      <Section tone="white">
+        <Container>
+          <SectionHeading
+            eyebrow="Point of sale"
+            title="A working till first. Intelligence and online selling when you need them."
+            lede="Each step is complete on its own. Prices are for software. A tablet or receipt printer is not included — we advise before you spend anything."
+          />
+          <div className="mt-10">
+            <TierCards items={posTiers} columns={3} />
           </div>
         </Container>
       </Section>

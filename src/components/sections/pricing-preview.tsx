@@ -3,7 +3,7 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 
 import { CheckList, Container, Pill, Section, SectionHeading, cx } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/reveal";
-import { tiers } from "@/lib/pricing";
+import { homeTiers } from "@/lib/pricing";
 
 export function PricingPreview() {
   return (
@@ -16,7 +16,7 @@ export function PricingPreview() {
         />
 
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
-          {tiers.map((tier, index) => (
+          {homeTiers.map((tier, index) => (
             <Reveal key={tier.id} delay={index * 80}>
               <article
                 className={cx(
@@ -28,7 +28,7 @@ export function PricingPreview() {
               >
                 <div className="flex items-center justify-between gap-3">
                   <h3 className={cx("text-xl", tier.featured && "text-white")}>{tier.name}</h3>
-                  {tier.featured ? <Pill tone="light">Most chosen</Pill> : null}
+                  {tier.featured ? <Pill tone="light">{tier.badge ?? "Most chosen"}</Pill> : null}
                 </div>
 
                 <p className={cx("mt-2 text-[0.9375rem]", tier.featured ? "text-azure-3/60" : "text-ink/55")}>

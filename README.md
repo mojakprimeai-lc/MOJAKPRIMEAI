@@ -44,7 +44,7 @@ URLs, sitemap, robots file and social sharing previews.
 | --- | --- |
 | `src/lib/company.ts` | Name, contacts, hours, navigation, headline claims |
 | `src/lib/solutions.ts` | The four offerings: features, inclusions, steps, outcomes, FAQs |
-| `src/lib/pricing.ts` | Packages, add-ons, pay-as-you-go rates, Care Plan, small print |
+| `src/lib/pricing.ts` | Website/chat packages, POS steps (Smart Till / Plus / Full Business), add-ons, Care Plan |
 | `src/lib/work.ts` | Case studies, demo links, screenshots, metrics |
 | `src/lib/content.ts` | Losses, process, industries, home FAQs, the roadmap strip |
 | `src/lib/assistant.ts` | Everything the on-site assistant can answer |

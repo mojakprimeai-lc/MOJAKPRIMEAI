@@ -141,11 +141,11 @@ export const industries: Industry[] = [
 export const faqs = [
   {
     q: "Is this affordable for a small business?",
-    a: "That is who we build for. An assistant on two channels starts at KES 20,000 as a one-off, and a full website with an assistant, search setup and hosting starts at KES 60,000. There is no forced Mojak labour fee after launch — you pay us for changes when you need them. Platform costs like WhatsApp or paid AI usage are separate and explained before go-live.",
+    a: "That is who we build for. An assistant on two channels starts at KES 20,000 as a one-off. A full website with an assistant, search setup and hosting starts at KES 60,000. A complete Smart Till starts at KES 30,000. There is no forced Mojak labour fee after launch — you pay us for changes when you need them. Platform costs like WhatsApp or paid AI usage are separate and explained before go-live.",
   },
   {
     q: "How long does it take?",
-    a: "An assistant is usually live in under a week. A full website with an assistant takes one to three weeks, depending mostly on how quickly we get your photos and prices. Point-of-sale rollouts start with a one-week pilot at a single counter.",
+    a: "An assistant is usually live in under a week. A full website with an assistant takes one to three weeks, depending mostly on how quickly we get your photos and prices. A Smart Till is set up on one counter with your real products; we train your team in person before we leave.",
   },
   {
     q: "Will the AI say something wrong to my customer?",

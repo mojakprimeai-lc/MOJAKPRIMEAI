@@ -40,6 +40,12 @@ export type Feature = {
   body: string;
 };
 
+export type FeatureGroup = {
+  title: string;
+  lede: string;
+  items: Feature[];
+};
+
 export type Solution = {
   slug: string;
   name: string;
@@ -53,6 +59,8 @@ export type Solution = {
   priceNote: string;
   costsToday: { title: string; body: string }[];
   features: Feature[];
+  /** Extra capability groups (e.g. POS Plus / Full Business). */
+  featureGroups?: FeatureGroup[];
   included: string[];
   steps: { title: string; body: string }[];
   outcomes: { before: string; after: string }[];
@@ -274,12 +282,12 @@ export const solutions: Solution[] = [
     name: "AI point of sale",
     navLabel: "AI point of sale",
     icon: Store,
-    pitch: "A till that counts your stock, warns you before you run out, and tells you what is making money.",
+    pitch: "A till that records sales, counts stock, and warns you before you run out — with clearer steps if you need profit insight or online selling.",
     headline: "Know what sold, what is finishing, and what is quietly losing you money",
     intro:
-      "An ordinary POS records a sale. Ours reads the pattern behind the sales: what moves, what sits, what to reorder on Thursday so you do not run dry on Saturday. It runs on the computer or tablet you already have, and sends you a summary at closing time.",
-    priceFrom: "KES 150,000",
-    priceNote: "Setup, configuration with your real products, staff training and pilot. Quoted per business.",
+      "An ordinary till records a sale. Ours counts stock as you sell, warns you before popular items run out, and sends a closing summary to your phone. It runs on a computer or tablet you likely already own. Start with a complete Smart Till; add intelligence or online selling only when you need them.",
+    priceFrom: "KES 30,000",
+    priceNote: "Software setup. Smart Till 30k · Plus 65k · Full Business from 120k.",
     costsToday: [
       {
         title: "Stock counted by hand, and still wrong",
@@ -303,32 +311,12 @@ export const solutions: Solution[] = [
       {
         icon: Bell,
         title: "Warnings before you run out",
-        body: "The system learns how fast each item moves and alerts you while there is still time to restock, not after a customer has already left.",
-      },
-      {
-        icon: TrendingUp,
-        title: "Reorder suggestions with numbers behind them",
-        body: "How much to buy and when, based on how the item has actually sold in your shop, not a guess.",
-      },
-      {
-        icon: LineChart,
-        title: "Demand prediction for the seasons you know",
-        body: "Month end, school opening, holidays, rainy season. The pattern is already in your sales history — we surface it before the rush.",
-      },
-      {
-        icon: Coins,
-        title: "Profit per item, not just sales per item",
-        body: "The best seller and the biggest earner are often two different products. The system shows you which is which.",
-      },
-      {
-        icon: Package,
-        title: "Dead stock, flagged",
-        body: "Items that have not moved in weeks are listed with the money tied up in them, so you can discount them while they are still worth something.",
+        body: "You get an alert while there is still time to restock, not after a customer has already left.",
       },
       {
         icon: AlarmClock,
         title: "A closing summary on your phone",
-        body: "Sales, cash, M-Pesa, top items, and what to restock — sent to you at closing time, whether or not you were in the shop.",
+        body: "Sales, stock movements and what needs attention — sent to you at closing time, whether or not you were in the shop.",
       },
       {
         icon: ShieldCheck,
@@ -336,12 +324,66 @@ export const solutions: Solution[] = [
         body: "Each person has their own login. Unusual voids, discounts and gaps between stock and sales are flagged for you to look at.",
       },
     ],
+    featureGroups: [
+      {
+        title: "Smart Till Plus — from KES 65,000",
+        lede: "The same till, plus the numbers that help you decide what to stock, drop and promote.",
+        items: [
+          {
+            icon: Coins,
+            title: "Profit per item, not just sales per item",
+            body: "The best seller and the biggest earner are often two different products. Plus shows you which is which.",
+          },
+          {
+            icon: TrendingUp,
+            title: "Reorder suggestions with numbers behind them",
+            body: "How much to buy and when, based on how the item has actually sold in your shop, not a guess.",
+          },
+          {
+            icon: LineChart,
+            title: "Demand you can plan for",
+            body: "Month end, school opening, holidays, rainy season. The pattern is already in your sales history — we surface it before the rush.",
+          },
+          {
+            icon: Package,
+            title: "Dead stock, flagged",
+            body: "Items that have not moved in weeks are listed with the money tied up in them, so you can discount them while they are still worth something.",
+          },
+          {
+            icon: Send,
+            title: "Customer list and WhatsApp offers",
+            body: "Customers who agree join a list you own. New stock or a promotion goes out in one message, not one chat at a time.",
+          },
+        ],
+      },
+      {
+        title: "Full Business System — from KES 120,000",
+        lede: "For businesses selling at the counter and online. This is shop plus web — not a till-only product.",
+        items: [
+          {
+            icon: ShoppingCart,
+            title: "Online shop with M-Pesa",
+            body: "Customers browse, order and pay from their phone. Stock is the same list as the counter — you never sell the last item twice.",
+          },
+          {
+            icon: LayoutDashboard,
+            title: "Orders, delivery and a staff back-office",
+            body: "Web orders appear where your counter team already works. Customers can follow delivery. Your team updates stock and messages from one place.",
+          },
+          {
+            icon: Sparkles,
+            title: "AI assistant on web or WhatsApp",
+            body: "Prices, availability and delivery questions answered from your real information, day and night, with a clean handover when a person is needed.",
+          },
+        ],
+      },
+    ],
     included: [
       "Your product list, prices and suppliers loaded in with you",
       "Attendant and owner accounts with the right permissions",
-      "Receipts, daily reports and M-Pesa reconciliation",
+      "Receipts, daily reports and M-Pesa reconciliation at the till",
       "Training for every person who will touch the till",
-      "A pilot at one counter before you roll it out",
+      "We start on one counter with your real products",
       "Support while your team settles in",
     ],
     steps: [
@@ -354,24 +396,24 @@ export const solutions: Solution[] = [
         body: "Your items, your prices, your suppliers, your units. Not a demo catalogue you have to replace later.",
       },
       {
-        title: "We pilot on one till",
-        body: "You sell on it for a full week with your old method running alongside, until you trust the numbers.",
+        title: "You sell on one till",
+        body: "Your team uses it with your real products. We stay close until the numbers match how the shop actually runs.",
       },
       {
-        title: "We roll out and train",
-        body: "Every attendant gets trained. You get the reports on your phone from day one.",
+        title: "We train and hand over",
+        body: "Every attendant gets trained in person. You get the reports on your phone from day one.",
       },
     ],
     outcomes: [
       { before: "Counting stock by hand at closing", after: "Stock count that is always current" },
-      { before: "Finding out you are out of stock from a customer", after: "Warned days before it happens" },
-      { before: "Guessing what to reorder", after: "A restock list with quantities" },
-      { before: "Profit known at month end, roughly", after: "Profit per item, visible daily" },
+      { before: "Finding out you are out of stock from a customer", after: "Warned before it happens" },
+      { before: "Guessing what to reorder", after: "A restock list with quantities — on Plus" },
+      { before: "Profit known at month end, roughly", after: "Profit per item, visible daily — on Plus" },
     ],
     faqs: [
       {
         q: "Do I need to buy new machines?",
-        a: "Usually not. It runs on a computer, laptop or tablet you already have. If you want a receipt printer or barcode scanner we advise on cheap, reliable ones — we do not mark up hardware.",
+        a: "Usually not. Prices are for software. It runs on a computer, laptop or tablet you already have. If you want a receipt printer or barcode scanner we advise before you spend — we do not push hardware.",
       },
       {
         q: "What if my attendants are not good with computers?",
@@ -379,7 +421,11 @@ export const solutions: Solution[] = [
       },
       {
         q: "Can I start small?",
-        a: "That is how we prefer it. One counter, one week, your real products. You expand once you trust it.",
+        a: "Yes. Smart Till is KES 30,000 and is a complete till. Smart Till Plus is KES 65,000 if you want profit, reorders and customer offers. Full Business, from KES 120,000, is for selling in the shop and online. Already on Smart Till? Plus is the difference only — KES 35,000.",
+      },
+      {
+        q: "Is Full Business a POS?",
+        a: "It includes the till, and it also includes an online shop, delivery tracking and a back-office. We recommend it when you already sell — or are ready to sell — beyond the counter. Most shops start on Smart Till or Plus.",
       },
       {
         q: "Is my business data safe?",

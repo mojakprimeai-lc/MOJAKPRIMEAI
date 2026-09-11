@@ -10,7 +10,9 @@ import { company } from "@/lib/company";
 const interests = [
   { value: "starter", label: "Chat assistant (Starter — from KES 20,000)" },
   { value: "business", label: "Website with assistant (Business — from KES 60,000)" },
-  { value: "operations", label: "Online selling or AI POS (from KES 150,000)" },
+  { value: "smart-till", label: "Smart Till (from KES 30,000)" },
+  { value: "smart-till-plus", label: "Smart Till Plus (from KES 65,000)" },
+  { value: "full-business", label: "Full Business System (from KES 120,000)" },
   { value: "ai-websites", label: "AI-powered website" },
   { value: "ai-chat-assistants", label: "WhatsApp, Facebook or Instagram assistant" },
   { value: "ai-point-of-sale", label: "AI point of sale and stock" },
@@ -25,8 +27,10 @@ export function EnquiryForm() {
 
   // Links such as /contact?interest=business preselect the right option.
   const requested = params.get("interest");
+  const normalised =
+    requested === "operations" ? "full-business" : requested;
   const preselected =
-    requested && interests.some((item) => item.value === requested) ? requested : "not-sure";
+    normalised && interests.some((item) => item.value === normalised) ? normalised : "not-sure";
 
   const [interest, setInterest] = useState(preselected);
   const [appliedPreselection, setAppliedPreselection] = useState(preselected);

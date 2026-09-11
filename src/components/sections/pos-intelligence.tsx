@@ -21,7 +21,7 @@ export function PosIntelligence() {
             <SectionHeading
               eyebrow="The difference an AI till makes"
               title="An ordinary POS records what happened. Ours tells you what to do next."
-              lede="Both machines take the money. Only one of them notices that your best seller runs out every second Saturday, and warns you on the Thursday."
+              lede="Both machines take the money. Only one of them notices that your best seller is running low, and warns you before a customer asks for it. From KES 30,000 for a complete till."
             />
 
             <Link href="/solutions/ai-point-of-sale" className="btn btn-dark mt-8">

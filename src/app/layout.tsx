@@ -106,7 +106,7 @@ const organisationSchema = {
   makesOffer: [
     { "@type": "Offer", name: "AI-powered websites", priceCurrency: "KES", price: "50000" },
     { "@type": "Offer", name: "AI chat assistants", priceCurrency: "KES", price: "10000" },
-    { "@type": "Offer", name: "AI point of sale", priceCurrency: "KES", price: "150000" },
+    { "@type": "Offer", name: "AI point of sale", priceCurrency: "KES", price: "30000" },
   ],
 };
 

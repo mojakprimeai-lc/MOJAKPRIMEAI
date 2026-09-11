@@ -103,6 +103,25 @@ export default async function SolutionPage({ params }: Params) {
         </Container>
       </Section>
 
+      {solution.featureGroups?.map((group, groupIndex) => (
+        <Section key={group.title} tone={groupIndex % 2 === 0 ? "paper" : "white"}>
+          <Container>
+            <SectionHeading eyebrow="A further step" title={group.title} lede={group.lede} />
+            <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {group.items.map((feature, index) => (
+                <Reveal as="li" key={feature.title} delay={(index % 3) * 60}>
+                  <div className="h-full rounded-2xl border border-ink/8 bg-white p-6 transition-colors hover:border-azure/25">
+                    <IconBadge icon={feature.icon} size="sm" />
+                    <h3 className="mt-4 text-[1.125rem] font-semibold">{feature.title}</h3>
+                    <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink/65">{feature.body}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </ul>
+          </Container>
+        </Section>
+      ))}
+
       {/* Before / after */}
       <Section tone="ink">
         <Container>
