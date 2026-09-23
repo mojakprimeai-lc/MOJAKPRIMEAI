@@ -4,7 +4,7 @@ import { Container, Section, SectionHeading } from "@/components/ui/primitives";
 
 export function FaqBlock({
   items,
-  eyebrow = "Questions we get asked",
+  eyebrow = "FAQs",
   title = "The things owners actually want to know",
   lede,
   tone = "white",

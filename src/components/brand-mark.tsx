@@ -1,49 +1,64 @@
+import Image from "next/image";
+
 import { cx } from "@/components/ui/primitives";
 
 /**
- * The Mojak mark: an "M" rising out of a chip tile, with a live signal node.
- * Drawn rather than imported so it stays crisp at every size and can be
- * recoloured for dark and light surfaces.
+ * BrandGlyph — the Mojak AI head icon, cropped from the official logo.
+ *
+ * Used at small sizes where only the mark is needed (assistant chat header,
+ * compact icon contexts). The logo's own background colour (#eaf4fc) is used
+ * as the containing chip's fill so the image always sits in its natural
+ * environment and looks crisp on both light and dark surfaces.
+ *
+ * Cropping: the original 640×640 JPG has the head mark in the upper-centre
+ * region. We display the container smaller than the image by zooming the
+ * background to ~220 % and positioning it at the top of the frame, which
+ * isolates just the AI-head graphic without any raster editing.
  */
-export function BrandGlyph({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
-  const id = tone === "light" ? "mojak-glyph-light" : "mojak-glyph-dark";
-
+export function BrandGlyph({
+  className,
+  tone = "dark",
+}: {
+  className?: string;
+  tone?: "dark" | "light";
+}) {
   return (
-    <svg viewBox="0 0 40 40" fill="none" aria-hidden className={cx("shrink-0", className)}>
-      <defs>
-        <linearGradient id={`${id}-stroke`} x1="6" y1="4" x2="34" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor={tone === "light" ? "#4fb0ff" : "#0b7ff5"} />
-          <stop offset="1" stopColor={tone === "light" ? "#00c48c" : "#054a96"} />
-        </linearGradient>
-        <linearGradient id={`${id}-tile`} x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-          <stop stopColor={tone === "light" ? "rgba(79,176,255,0.22)" : "rgba(11,127,245,0.14)"} />
-          <stop offset="1" stopColor={tone === "light" ? "rgba(0,196,140,0.12)" : "rgba(0,196,140,0.08)"} />
-        </linearGradient>
-      </defs>
-
-      <rect x="2" y="2" width="36" height="36" rx="11" fill={`url(#${id}-tile)`} />
-      <rect
-        x="2.75"
-        y="2.75"
-        width="34.5"
-        height="34.5"
-        rx="10.25"
-        stroke={`url(#${id}-stroke)`}
-        strokeWidth="1.5"
-        opacity="0.55"
-      />
-      <path
-        d="M11.5 28.5V13.2c0-.55.66-.83 1.05-.44L20 20.2l7.45-7.44c.39-.39 1.05-.11 1.05.44V28.5"
-        stroke={`url(#${id}-stroke)`}
-        strokeWidth="2.6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="30.5" cy="9.5" r="2.6" fill={tone === "light" ? "#34e0ac" : "#00c48c"} />
-    </svg>
+    <span
+      className={cx(
+        "inline-block shrink-0 overflow-hidden rounded-xl",
+        // Ring on dark surfaces so the chip reads against the background
+        tone === "light" && "ring-1 ring-white/20",
+        className,
+      )}
+      style={{
+        backgroundImage: "url('/mojaklogo.jpg')",
+        backgroundSize: "220%",
+        backgroundPosition: "50% 8%",
+        backgroundRepeat: "no-repeat",
+        // Match the logo's own page colour so there is no visible border seam
+        backgroundColor: "#eaf4fc",
+      }}
+      role="img"
+      aria-label="Mojak Prime AI"
+    />
   );
 }
 
+/**
+ * BrandMark — the full Mojak Prime AI wordmark used in the header and footer.
+ *
+ * Light surfaces (tone="dark", i.e. the header):
+ *   The logo image is rendered with mix-blend-mode:multiply. The logo's
+ *   pale-blue background (#eaf4fc) mathematically multiplies with the site's
+ *   --color-paper (#f8fafc) and becomes nearly invisible, leaving only the
+ *   coloured head mark and bold wordmark text.
+ *
+ * Dark surfaces (tone="light", i.e. the footer):
+ *   The logo sits inside a frosted white-on-dark pill so it remains legible
+ *   against the navy/ink background without any colour inversion.
+ *
+ * The compact prop reduces the rendered size for the fixed header bar.
+ */
 export function BrandMark({
   tone = "dark",
   className,
@@ -53,27 +68,43 @@ export function BrandMark({
   className?: string;
   compact?: boolean;
 }) {
+  // The logo is square; height drives both dimensions at natural aspect ratio.
+  const imgSize = compact ? 108 : 124;
+
+  if (tone === "light") {
+    // Dark surface — wrap in a frosted white pill so the logo stands out
+    return (
+      <span className={cx("inline-flex items-center", className)}>
+        <span className="inline-flex items-center justify-center overflow-hidden rounded-2xl bg-white/10 p-1.5 ring-1 ring-white/15 backdrop-blur-sm">
+          <Image
+            src="/mojaklogo.jpg"
+            alt="Mojak Prime AI"
+            width={imgSize}
+            height={imgSize}
+            className="block rounded-xl"
+            priority
+          />
+        </span>
+      </span>
+    );
+  }
+
+  // Light surface — multiply blend removes the near-white logo background
   return (
-    <span className={cx("inline-flex items-center gap-2.5", className)}>
-      <BrandGlyph tone={tone} className={compact ? "h-8 w-8" : "h-9 w-9"} />
-      <span className="flex flex-col leading-none">
-        <span
-          className={cx(
-            "font-display font-bold tracking-tight",
-            compact ? "text-[1.0625rem]" : "text-lg",
-            tone === "light" ? "text-white" : "text-ink",
-          )}
-        >
-          MOJAK
-        </span>
-        <span
-          className={cx(
-            "mt-1 text-[0.5625rem] font-semibold tracking-[0.28em]",
-            tone === "light" ? "text-azure-2" : "text-azure-deep",
-          )}
-        >
-          PRIME AI
-        </span>
+    <span className={cx("inline-flex items-center", className)}>
+      <span
+        className="inline-block overflow-hidden rounded-2xl"
+        style={{ width: imgSize, height: imgSize }}
+      >
+        <Image
+          src="/mojaklogo.jpg"
+          alt="Mojak Prime AI"
+          width={imgSize}
+          height={imgSize}
+          className="block"
+          style={{ mixBlendMode: "multiply" }}
+          priority
+        />
       </span>
     </span>
   );

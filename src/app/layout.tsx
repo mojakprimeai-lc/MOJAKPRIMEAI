@@ -64,6 +64,13 @@ export const metadata: Metadata = {
     description:
       "AI websites, WhatsApp assistants and smart POS. Built in Nairobi, priced for SMEs. No forced Mojak labour fees.",
   },
+  icons: {
+    icon: [
+      { url: "/mojaklogo.jpg", type: "image/jpeg" },
+    ],
+    apple: "/mojaklogo.jpg",
+    shortcut: "/mojaklogo.jpg",
+  },
   robots: {
     index: true,
     follow: true,

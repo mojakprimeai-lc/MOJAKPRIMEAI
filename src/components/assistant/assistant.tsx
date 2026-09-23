@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowUpRight, MessageSquareText, Send, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, MessageSquareText, Send, X } from "lucide-react";
 
 import { BrandGlyph } from "@/components/brand-mark";
 import { cx } from "@/components/ui/primitives";
@@ -116,8 +116,8 @@ export function Assistant() {
           open && "pointer-events-none scale-90 opacity-0",
         )}
       >
-        <span className="relative inline-flex">
-          <Sparkles className="h-5 w-5 text-azure-2" strokeWidth={1.75} aria-hidden />
+        <span className="relative inline-flex shrink-0">
+          <BrandGlyph tone="light" className="h-8 w-8" />
           <span className="absolute -right-1 -top-1 h-2 w-2 animate-pulse-dot rounded-full bg-mint" aria-hidden />
         </span>
         <span className="font-display text-[0.9375rem] font-semibold">Ask Prime</span>
