@@ -66,10 +66,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/mojaklogo.jpg", type: "image/jpeg" },
+      { url: "/mojak-head.png", type: "image/png" },
     ],
-    apple: "/mojaklogo.jpg",
-    shortcut: "/mojaklogo.jpg",
+    apple: "/mojak-head.png",
+    shortcut: "/mojak-head.png",
   },
   robots: {
     index: true,

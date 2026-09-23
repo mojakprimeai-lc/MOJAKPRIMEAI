@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Compass, Mail, MapPin, Sparkles } from "lucide-react";
 
@@ -38,17 +37,6 @@ export default function AboutPage() {
             <SectionHeading eyebrow="Who we are" title="A young company that would rather be judged on what it has built" />
 
             <div className="prose-clean text-lg text-ink/75">
-              {/* Official logo — anchors the brand identity for first-time visitors */}
-              <div className="mb-7 inline-block overflow-hidden rounded-2xl border border-ink/8 bg-white p-1 shadow-lift">
-                <Image
-                  src="/mojaklogo.jpg"
-                  alt="Mojak Prime AI — official logo"
-                  width={160}
-                  height={160}
-                  className="block rounded-xl"
-                  style={{ mixBlendMode: "multiply" }}
-                />
-              </div>
               <p>
                 {company.legalName} is a technology company based in {company.city}. We build three things:
                 AI-powered websites, chat assistants that answer customers on WhatsApp and social media, and
