@@ -26,7 +26,13 @@ export const company = {
   whatsapp: null as { value: string; number: string } | null,
 
   /** Add entries as the accounts go live: { name, handle, url }. */
-  socials: [] as { name: string; handle: string; url: string }[],
+  socials: [
+    {
+      name: "Facebook",
+      handle: "Mojak Prime AI",
+      url: "https://www.facebook.com/profile.php?id=61588904265805",
+    },
+  ],
 } as const;
 
 export const nav = [

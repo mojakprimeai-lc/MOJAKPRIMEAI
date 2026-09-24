@@ -96,6 +96,7 @@ const organisationSchema = {
   description: company.descriptor,
   url: siteUrl,
   email: company.email,
+  sameAs: company.socials.map((s) => s.url),
   slogan: company.tagline,
   areaServed: { "@type": "Country", name: "Kenya" },
   address: {
