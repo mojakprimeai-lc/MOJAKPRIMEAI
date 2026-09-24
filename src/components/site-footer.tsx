@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-mark";
+import { SocialIcon } from "@/components/ui/social-icons";
 import { caseStudies } from "@/lib/work";
 import { company } from "@/lib/company";
 import { solutions } from "@/lib/solutions";
@@ -71,17 +72,26 @@ export function SiteFooter() {
             </div>
 
             {company.socials.length > 0 ? (
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap items-center gap-2.5">
                 {company.socials.map((social) => (
                   <a
                     key={social.url}
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-azure-3/20 bg-white/5 px-3.5 py-1.5 text-[0.8125rem] text-azure-3/85 transition-colors hover:border-azure-2/50 hover:text-white"
+                    aria-label={`${company.name} on ${social.name}`}
+                    className="group inline-flex items-center gap-2 rounded-xl border border-azure-3/20 bg-white/5 px-3 py-1.5 text-[0.8125rem] text-azure-3/90 backdrop-blur-sm transition-all duration-200 hover:border-azure-2/50 hover:bg-white/10 hover:text-white"
                   >
-                    {social.name}
-                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} aria-hidden />
+                    <SocialIcon
+                      name={social.name}
+                      className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:scale-110"
+                    />
+                    <span>{social.name}</span>
+                    <ArrowUpRight
+                      className="h-3.5 w-3.5 opacity-60 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                      strokeWidth={1.75}
+                      aria-hidden
+                    />
                   </a>
                 ))}
               </div>

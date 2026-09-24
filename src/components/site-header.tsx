@@ -7,6 +7,7 @@ import { ArrowRight, ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-mark";
 import { cx } from "@/components/ui/primitives";
+import { SocialIcon } from "@/components/ui/social-icons";
 import { company, nav } from "@/lib/company";
 
 export function SiteHeader() {
@@ -251,6 +252,26 @@ export function SiteHeader() {
                 {company.email}
               </a>
             )}
+
+            {company.socials.length > 0 ? (
+              <div className="flex items-center justify-between border-t border-ink/8 pt-3">
+                <span className="text-[0.8125rem] font-medium text-ink/55">Follow Mojak</span>
+                <div className="flex items-center gap-2">
+                  {company.socials.map((social) => (
+                    <a
+                      key={social.url}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${company.name} on ${social.name}`}
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-ink/10 bg-white text-ink/75 transition-colors hover:border-azure/40 hover:text-azure-deep"
+                    >
+                      <SocialIcon name={social.name} className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

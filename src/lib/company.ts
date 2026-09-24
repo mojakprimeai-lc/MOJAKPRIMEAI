@@ -32,6 +32,11 @@ export const company = {
       handle: "Mojak Prime AI",
       url: "https://www.facebook.com/profile.php?id=61588904265805",
     },
+    {
+      name: "Instagram",
+      handle: "@mojakprimeai",
+      url: "https://www.instagram.com/mojakprimeai/",
+    },
   ],
 } as const;
 

@@ -5,6 +5,7 @@ import { Clock, Mail, MapPin, MessageCircle, Phone, Sparkles } from "lucide-reac
 import { EnquiryForm } from "@/components/enquiry-form";
 import { PageHero } from "@/components/page-hero";
 import { Container, Section } from "@/components/ui/primitives";
+import { SocialIcon } from "@/components/ui/social-icons";
 import { company } from "@/lib/company";
 
 export const metadata: Metadata = {
@@ -119,16 +120,24 @@ export default function ContactPage() {
                 {company.socials.length > 0 ? (
                   <div className="mt-6 border-t border-ink/8 pt-5">
                     <p className="text-[0.8125rem] uppercase tracking-wider text-ink/45">Follow us</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2.5">
                       {company.socials.map((social) => (
                         <a
                           key={social.url}
                           href={social.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-full border border-ink/12 bg-paper px-3.5 py-1.5 text-[0.875rem] font-medium text-ink/70 transition-colors hover:border-azure/40 hover:text-azure-deep"
+                          aria-label={`${company.name} on ${social.name}`}
+                          className="group inline-flex items-center gap-2 rounded-xl border border-ink/12 bg-paper px-3.5 py-2 text-[0.875rem] font-medium text-ink/80 transition-all duration-200 hover:border-azure/40 hover:bg-azure/5 hover:text-azure-deep"
                         >
-                          {social.name}
+                          <SocialIcon
+                            name={social.name}
+                            className="h-4 w-4 shrink-0 text-ink/60 transition-transform duration-200 group-hover:scale-110 group-hover:text-azure-deep"
+                          />
+                          <span>{social.name}</span>
+                          <span className="text-[0.75rem] text-ink/45 transition-colors group-hover:text-azure-deep/70">
+                            {social.handle}
+                          </span>
                         </a>
                       ))}
                     </div>
