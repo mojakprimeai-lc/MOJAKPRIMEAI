@@ -6,6 +6,17 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  async redirects() {
+    return [
+      { source: "/solutions", destination: "/what-we-take-on", permanent: true },
+      { source: "/solutions/:path*", destination: "/what-we-take-on", permanent: true },
+      { source: "/work", destination: "/what-we-take-on", permanent: true },
+      { source: "/work/:path*", destination: "/what-we-take-on", permanent: true },
+      { source: "/pricing", destination: "/how-we-work", permanent: true },
+      { source: "/about", destination: "/", permanent: true },
+      { source: "/contact", destination: "/start", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {
