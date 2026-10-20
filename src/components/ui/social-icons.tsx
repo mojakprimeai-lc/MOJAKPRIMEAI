@@ -1,4 +1,4 @@
-import { siFacebook, siInstagram } from "simple-icons";
+import { siFacebook, siInstagram, siWhatsapp } from "simple-icons";
 
 import { cx } from "@/components/ui/primitives";
 
@@ -23,6 +23,10 @@ export function InstagramIcon({ className }: { className?: string }) {
 
 export function FacebookIcon({ className }: { className?: string }) {
   return <BrandIcon path={siFacebook.path} className={className} />;
+}
+
+export function WhatsAppIcon({ className }: { className?: string }) {
+  return <BrandIcon path={siWhatsapp.path} className={className} />;
 }
 
 export function LinkedInIcon({ className }: { className?: string }) {
@@ -77,6 +81,8 @@ export function SocialIcon({
     case "facebook":
     case "fb":
       return <FacebookIcon className={className} />;
+    case "whatsapp":
+      return <WhatsAppIcon className={className} />;
     case "linkedin":
       return <LinkedInIcon className={className} />;
     case "x":

@@ -1,6 +1,5 @@
 /**
  * Factual company details. Public sentences live in site-content.ts.
- * Phone and WhatsApp stay empty until a real number exists.
  */
 
 export const siteUrl = "https://mojakprimeai.netlify.app";
@@ -13,8 +12,8 @@ export const company = {
   city: "Nairobi",
   country: "Kenya",
   hours: "Monday to Saturday, 8:00 AM to 6:00 PM",
-  phone: null as { value: string; tel: string } | null,
-  whatsapp: null as { value: string; number: string } | null,
+  phone: { value: "0759 432 743", tel: "+254759432743" },
+  whatsapp: { value: "0759 432 743", number: "254759432743" },
   socials: [
     {
       name: "Facebook",
@@ -28,6 +27,10 @@ export const company = {
     },
   ],
 } as const;
+
+export function whatsappHref(prefill: string) {
+  return `https://wa.me/${company.whatsapp.number}?text=${encodeURIComponent(prefill)}`;
+}
 
 export const nav = [
   { label: "Home", href: "/" },

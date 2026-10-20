@@ -32,7 +32,7 @@ export default function HowWeWorkPage() {
           </ol>
 
           <aside className="rounded-2xl bg-paper-2 p-6 lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
-            <h2 className="text-xl">Important boundaries</h2>
+            <h2 className="text-xl">{howWeWork.expectationsHeading}</h2>
             <ul className="mt-5 space-y-4">
               {boundaries.map((boundary) => (
                 <li key={boundary} className="border-l-2 border-azure pl-4 text-[1rem] leading-relaxed text-ink/75">

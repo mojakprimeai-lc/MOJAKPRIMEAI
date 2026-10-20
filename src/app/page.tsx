@@ -43,14 +43,14 @@ export default function HomePage() {
         <Container className="py-12 md:py-16">
           <div className="max-w-3xl">
             <h2 className="text-3xl sm:text-4xl">{home.signsHeading}</h2>
-            <ul className="mt-7 grid gap-3 md:grid-cols-3">
-              {home.signs.map((sign) => (
-                <li key={sign} className="rounded-2xl border border-ink/10 bg-white p-5 text-[1.0625rem] leading-relaxed text-ink/80">
-                  {sign}
-                </li>
-              ))}
-            </ul>
           </div>
+          <ul className="mt-7 grid gap-4 lg:grid-cols-3">
+            {home.signs.map((sign) => (
+              <li key={sign} className="rounded-2xl border border-ink/10 bg-white p-5 text-[1.0625rem] leading-relaxed text-balance text-ink/80">
+                {sign}
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-14 border-t border-ink/10 pt-10">
             <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
@@ -76,7 +76,7 @@ export default function HomePage() {
 
           <div className="mt-14 border-t border-ink/10 pt-10">
             <h2 className="text-3xl sm:text-4xl">{home.journeyHeading}</h2>
-            <ol className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <ol className="mt-7 grid gap-4 sm:grid-cols-2 2xl:grid-cols-5">
               {engagementSteps.map((step, index) => (
                 <li
                   key={step.title}
@@ -85,8 +85,8 @@ export default function HomePage() {
                   <p className="font-display text-[0.8125rem] font-semibold tracking-wide text-azure-deep">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-1 text-lg leading-snug">{step.title}</h3>
-                  <p className="mt-2 text-[0.9375rem] leading-relaxed text-ink/70">{step.text}</p>
+                  <h3 className="mt-2 text-xl leading-snug">{step.title}</h3>
+                  <p className="mt-2 text-[1.0625rem] leading-relaxed text-ink/75">{step.text}</p>
                 </li>
               ))}
             </ol>

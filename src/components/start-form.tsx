@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import { AlertCircle, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
 
+import { ReplyChannels } from "@/components/contact-links";
 import { cx } from "@/components/ui/primitives";
-import { company } from "@/lib/company";
 import { formErrors, startCopy, urgencyOptions } from "@/lib/site-content";
 
 type State = "idle" | "sending" | "sent" | "error";
@@ -15,9 +15,7 @@ type Fields = {
   phone: string;
   problem: string;
   current: string;
-  decision: string;
   urgency: string;
-  investment: string;
 };
 
 const empty: Fields = {
@@ -26,9 +24,7 @@ const empty: Fields = {
   phone: "",
   problem: "",
   current: "",
-  decision: "",
   urgency: "",
-  investment: "",
 };
 
 const inputClass =
@@ -91,13 +87,7 @@ export function StartForm() {
         </span>
         <h2 className="mt-5 text-2xl">{startCopy.sentTitle}</h2>
         <p className="mt-3 text-ink/75">{startCopy.sentBody}</p>
-        <p className="mt-4 text-[0.9375rem] text-ink/65">
-          {startCopy.direct}{" "}
-          <a href={`mailto:${company.email}`} className="font-semibold text-azure-deep underline underline-offset-4">
-            {company.email}
-          </a>
-          .
-        </p>
+        <ReplyChannels className="mt-5" />
         <button type="button" onClick={() => setState("idle")} className="btn btn-outline mt-7">
           {startCopy.another}
         </button>
@@ -116,6 +106,7 @@ export function StartForm() {
       noValidate
     >
       <input type="hidden" name="form-name" value="mojak-start" />
+      <div className="grid gap-5">
       <Field label={startCopy.labels.name} htmlFor="name" required>
         <input
           id="name"
@@ -128,81 +119,67 @@ export function StartForm() {
         />
       </Field>
 
-      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <Field label={startCopy.labels.email} htmlFor="email">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            inputMode="email"
-            value={fields.email}
-            onChange={(event) => update("email", event.target.value)}
-            className={cx(inputClass, "h-12")}
-          />
-        </Field>
-        <Field label={startCopy.labels.phone} htmlFor="phone">
-          <input
-            id="phone"
-            name="phone"
-            type="tel"
-            autoComplete="tel"
-            inputMode="tel"
-            value={fields.phone}
-            onChange={(event) => update("phone", event.target.value)}
-            className={cx(inputClass, "h-12")}
-          />
-        </Field>
-      </div>
-      <p className="mt-2 text-[0.875rem] text-ink/55">{startCopy.hints.contact}</p>
-
-      <div className="mt-5">
-        <Field label={startCopy.labels.problem} htmlFor="problem" required>
-          <textarea
-            id="problem"
-            name="problem"
-            required
-            rows={4}
-            value={fields.problem}
-            onChange={(event) => update("problem", event.target.value)}
-            className={cx(inputClass, "min-h-28 resize-y py-3")}
-          />
-        </Field>
+      <div>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <Field label={startCopy.labels.email} htmlFor="email">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              inputMode="email"
+              value={fields.email}
+              onChange={(event) => update("email", event.target.value)}
+              className={cx(inputClass, "h-12")}
+            />
+          </Field>
+          <Field label={startCopy.labels.phone} htmlFor="phone">
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              inputMode="tel"
+              value={fields.phone}
+              onChange={(event) => update("phone", event.target.value)}
+              className={cx(inputClass, "h-12")}
+            />
+          </Field>
+        </div>
+        <p className="mt-2 text-[0.875rem] text-ink/55">{startCopy.hints.contact}</p>
       </div>
 
-      <div className="mt-5">
-        <Field label={startCopy.labels.current} htmlFor="current" required>
-          <textarea
-            id="current"
-            name="current"
-            required
-            rows={3}
-            value={fields.current}
-            onChange={(event) => update("current", event.target.value)}
-            className={cx(inputClass, "min-h-24 resize-y py-3")}
-          />
-        </Field>
-      </div>
+      <Field label={startCopy.labels.problem} htmlFor="problem" required>
+        <textarea
+          id="problem"
+          name="problem"
+          required
+          rows={4}
+          value={fields.problem}
+          onChange={(event) => update("problem", event.target.value)}
+          className={cx(inputClass, "min-h-28 resize-y py-3")}
+        />
+      </Field>
 
-      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <Field label={startCopy.labels.decision} htmlFor="decision" required>
-          <input
-            id="decision"
-            name="decision"
-            required
-            value={fields.decision}
-            onChange={(event) => update("decision", event.target.value)}
-            className={cx(inputClass, "h-12")}
-          />
-        </Field>
-        <Field label={startCopy.labels.urgency} htmlFor="urgency" required>
+      <Field label={startCopy.labels.current} htmlFor="current" hint={startCopy.hints.optional}>
+        <textarea
+          id="current"
+          name="current"
+          rows={2}
+          value={fields.current}
+          onChange={(event) => update("current", event.target.value)}
+          className={cx(inputClass, "min-h-20 resize-y py-3")}
+        />
+      </Field>
+
+      <Field label={startCopy.labels.urgency} htmlFor="urgency" hint={startCopy.hints.optional}>
+        <div className="relative">
           <select
             id="urgency"
             name="urgency"
-            required
             value={fields.urgency}
             onChange={(event) => update("urgency", event.target.value)}
-            className={cx(inputClass, "h-12 bg-paper")}
+            className={cx(inputClass, "h-12 appearance-none bg-paper pr-11")}
           >
             <option value="">Select one</option>
             {urgencyOptions.map((option) => (
@@ -211,21 +188,13 @@ export function StartForm() {
               </option>
             ))}
           </select>
-        </Field>
-      </div>
-
-      <div className="mt-5">
-        <Field label={startCopy.labels.investment} htmlFor="investment" required hint={startCopy.hints.investment}>
-          <input
-            id="investment"
-            name="investment"
-            required
-            value={fields.investment}
-            onChange={(event) => update("investment", event.target.value)}
-            placeholder="Not sure"
-            className={cx(inputClass, "h-12")}
+          <ChevronDown
+            className="pointer-events-none absolute top-1/2 right-4 h-4 w-4 -translate-y-1/2 text-ink/45"
+            strokeWidth={1.75}
+            aria-hidden
           />
-        </Field>
+        </div>
+      </Field>
       </div>
 
       <div className="absolute left-[-9999px] h-0 w-0 overflow-hidden" inert>
@@ -240,7 +209,7 @@ export function StartForm() {
         </p>
       ) : null}
 
-      <button type="submit" disabled={state === "sending"} className="btn btn-primary mt-6 w-full sm:w-auto">
+      <button type="submit" disabled={state === "sending"} className="btn btn-primary mt-5 w-full sm:w-auto">
         {state === "sending" ? (
           <>
             <Loader2 className="h-4 w-4 animate-spin" strokeWidth={2} aria-hidden />
@@ -262,10 +231,7 @@ function validate(fields: Fields) {
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return formErrors.email;
   if (phone && phone.replace(/\D/g, "").length < 7) return formErrors.phone;
   if (fields.problem.trim().length < 8) return formErrors.problem;
-  if (fields.current.trim().length < 2) return formErrors.current;
-  if (fields.decision.trim().length < 2) return formErrors.decision;
-  if (!(urgencyOptions as readonly string[]).includes(fields.urgency)) return formErrors.urgency;
-  if (fields.investment.trim().length < 2) return formErrors.investment;
+  if (fields.urgency && !(urgencyOptions as readonly string[]).includes(fields.urgency)) return formErrors.urgency;
   return "";
 }
 
@@ -284,12 +250,14 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="mb-2 block text-[0.9375rem] font-medium text-ink/80">
-        {label}
-        {required ? <span className="ml-1 text-azure-deep">*</span> : null}
-      </label>
+      <div className="mb-2 flex items-baseline justify-between gap-3">
+        <label htmlFor={htmlFor} className="text-[0.9375rem] font-medium text-ink/80">
+          {label}
+          {required ? <span className="ml-1 text-azure-deep">*</span> : null}
+        </label>
+        {hint ? <span className="text-[0.8125rem] text-ink/45">{hint}</span> : null}
+      </div>
       {children}
-      {hint ? <p className="mt-2 text-[0.875rem] text-ink/55">{hint}</p> : null}
     </div>
   );
 }

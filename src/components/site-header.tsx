@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { ChevronRight, Menu, X } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-mark";
+import { PhoneLink, WhatsAppLink } from "@/components/contact-links";
 import { cx } from "@/components/ui/primitives";
 import { company, nav } from "@/lib/company";
+
+const drawerRow =
+  "flex w-full items-center gap-8 whitespace-nowrap rounded-xl px-3 py-3 text-[1.0625rem] font-medium text-ink hover:bg-white";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -61,6 +65,8 @@ export function SiteHeader() {
   }
 
   const isActive = (href: string) => pathname === href;
+  const pages = nav.filter((item) => item.href !== "/start");
+  const start = nav.find((item) => item.href === "/start");
 
   return (
     <>
@@ -84,33 +90,35 @@ export function SiteHeader() {
             <BrandMark compact />
           </Link>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
-              {nav.map((item) =>
-                item.href === "/start" ? (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    aria-current={isActive(item.href) ? "page" : undefined}
-                    className="btn btn-primary ml-2"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    aria-current={isActive(item.href) ? "page" : undefined}
-                    className={cx(
-                      "inline-flex min-h-12 items-center rounded-lg px-3.5 text-[0.9375rem] font-medium transition-colors",
-                      isActive(item.href) ? "text-ink" : "text-ink/65 hover:text-ink",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                ),
-              )}
+              {pages.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? "page" : undefined}
+                  className={cx(
+                    "inline-flex min-h-12 items-center rounded-lg px-3.5 text-[0.9375rem] font-medium transition-colors",
+                    isActive(item.href) ? "text-ink" : "text-ink/65 hover:text-ink",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </nav>
+            <div className="hidden items-center gap-2 lg:flex">
+              <PhoneLink className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-ink/12 bg-white text-ink transition-colors hover:border-azure/40" />
+              <WhatsAppLink className="inline-flex h-12 w-12 items-center justify-center rounded-xl border border-ink/12 bg-white text-ink transition-colors hover:border-azure/40" />
+            </div>
+            {start ? (
+              <Link
+                href={start.href}
+                aria-current={isActive(start.href) ? "page" : undefined}
+                className="btn btn-primary"
+              >
+                {start.label}
+              </Link>
+            ) : null}
             <button
               ref={menuButtonRef}
               type="button"
@@ -140,14 +148,14 @@ export function SiteHeader() {
         />
         <div
           className={cx(
-            "absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-paper shadow-lift-lg transition-transform duration-300",
+            "absolute inset-y-0 right-0 flex w-max max-w-[calc(100%-1.5rem)] flex-col bg-paper shadow-lift-lg transition-transform duration-300",
             drawerOpen ? "translate-x-0" : "translate-x-full",
           )}
           role="dialog"
           aria-modal={drawerOpen}
           aria-label="Menu"
         >
-          <div className="flex h-[var(--header-h)] items-center justify-between border-b border-ink/8 px-5">
+          <div className="flex h-[var(--header-h)] items-center justify-between gap-6 border-b border-ink/8 px-4">
             <BrandMark compact />
             <button
               type="button"
@@ -158,20 +166,30 @@ export function SiteHeader() {
               <X className="h-5 w-5" strokeWidth={1.75} aria-hidden />
             </button>
           </div>
-          <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-6">
+          <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-2 py-3">
             <ul className="space-y-1">
-              {nav.map((item) => (
+              {pages.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     onClick={(event) => event.currentTarget.blur()}
-                    className="block rounded-xl px-4 py-3.5 text-lg font-medium text-ink hover:bg-white"
+                    className={drawerRow}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <ChevronRight className="h-4 w-4 shrink-0 text-ink/35" aria-hidden />
                   </Link>
                 </li>
               ))}
+              <li className="pt-2">
+                <div className="border-t border-ink/8" />
+              </li>
+              <li>
+                <PhoneLink showLabel showChevron onClick={closeDrawer} className={drawerRow} />
+              </li>
+              <li>
+                <WhatsAppLink showLabel showChevron onClick={closeDrawer} className={drawerRow} />
+              </li>
             </ul>
           </nav>
         </div>

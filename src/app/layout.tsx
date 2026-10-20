@@ -76,6 +76,7 @@ const organisationSchema = {
   description: company.statement,
   url: siteUrl,
   email: company.email,
+  telephone: company.phone.tel,
   sameAs: company.socials.map((social) => social.url),
   areaServed: { "@type": "Country", name: company.country },
   address: {
