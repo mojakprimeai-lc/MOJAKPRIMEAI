@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Disclosure } from "@/components/disclosure";
+import { CapabilityCard } from "@/components/capability-card";
 import { PageIntro } from "@/components/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { takeOn, workAreas } from "@/lib/site-content";
@@ -16,11 +16,10 @@ export default function WhatWeTakeOnPage() {
     <section className="bg-paper">
       <Container className="py-10 md:py-14">
         <PageIntro title={takeOn.title} lede={takeOn.lede} />
-        <div className="mt-8 max-w-3xl">
-          <Disclosure
-            variant="cards"
-            items={workAreas.map((area) => ({ id: area.id, title: area.title, text: area.detail }))}
-          />
+        <div className="mt-10 grid max-w-4xl gap-4">
+          {workAreas.map((area) => (
+            <CapabilityCard key={area.id} area={area} expandable />
+          ))}
         </div>
       </Container>
     </section>

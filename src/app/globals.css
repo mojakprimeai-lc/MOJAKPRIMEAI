@@ -167,11 +167,6 @@
   .btn-primary {
     background: linear-gradient(135deg, var(--color-azure-deep), var(--color-azure));
     color: #fff;
-    box-shadow: 0 14px 34px -16px rgba(11, 127, 245, 0.85);
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 20px 44px -16px rgba(11, 127, 245, 0.95);
   }
 
   .btn-dark {

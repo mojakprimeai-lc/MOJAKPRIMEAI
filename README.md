@@ -17,9 +17,12 @@ Requires Node 20 or newer.
 
 ## Start form
 
-Delivery uses Resend. Put these in `.env.local` and do not commit them:
+The Start form uses Netlify Forms so it can receive submissions before MOJAK owns a custom domain.
 
-- `RESEND_API_KEY`
-- `RESEND_FROM` — a sender on a domain verified in Resend
+After deployment:
 
-Messages go to the company email in `src/lib/company.ts`. Until both variables are set, the form refuses to send and points to that email address.
+1. Enable Form detection in Netlify.
+2. Redeploy so Netlify registers the `mojak-start` form.
+3. Under Forms → Submission notifications, add an email notification for `mojakprimeai@gmail.com`.
+
+The form definition is in `public/__forms.html`; its field names must remain aligned with `src/components/start-form.tsx`.

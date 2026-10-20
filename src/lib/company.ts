@@ -3,13 +3,12 @@
  * Phone and WhatsApp stay empty until a real number exists.
  */
 
-export const siteUrl = "https://mojakprimeai.com";
+export const siteUrl = "https://mojakprimeai.netlify.app";
 
 export const company = {
   name: "MOJAK",
   legalName: "Mojak Prime AI Limited",
-  statement:
-    "MOJAK designs and builds practical digital systems for businesses whose work is still manual, scattered, or hard to see.",
+  statement: "MOJAK helps businesses turn operational problems into practical digital systems.",
   email: "mojakprimeai@gmail.com",
   city: "Nairobi",
   country: "Kenya",
@@ -31,6 +30,7 @@ export const company = {
 } as const;
 
 export const nav = [
+  { label: "Home", href: "/" },
   { label: "What we take on", href: "/what-we-take-on" },
   { label: "How we work", href: "/how-we-work" },
   { label: "Start", href: "/start" },

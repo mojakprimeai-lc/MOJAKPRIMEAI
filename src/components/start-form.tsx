@@ -37,7 +37,6 @@ const inputClass =
 export function StartForm() {
   const [state, setState] = useState<State>("idle");
   const [error, setError] = useState("");
-  const [reference, setReference] = useState("");
   const [fields, setFields] = useState<Fields>(empty);
 
   function update(name: keyof Fields, value: string) {
@@ -48,36 +47,33 @@ export function StartForm() {
     event.preventDefault();
     if (state === "sending") return;
 
+    const validationError = validate(fields);
+    if (validationError) {
+      setState("error");
+      setError(validationError);
+      return;
+    }
+
     const form = event.currentTarget;
     const data = new FormData(form);
     setState("sending");
     setError("");
 
     try {
-      const response = await fetch("/api/enquiry", {
+      const response = await fetch("/__forms.html", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          phone: data.get("phone"),
-          problem: data.get("problem"),
-          current: data.get("current"),
-          decision: data.get("decision"),
-          urgency: data.get("urgency"),
-          investment: data.get("investment"),
-          website: data.get("website"),
-        }),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(
+          Array.from(data.entries()).map(([key, value]) => [key, String(value)]),
+        ).toString(),
       });
-      const payload = (await response.json()) as { ok?: boolean; reference?: string; error?: string };
 
-      if (!response.ok || !payload.ok) {
+      if (!response.ok) {
         setState("error");
-        setError(payload.error === "unconfigured" ? formErrors.unconfigured : payload.error ?? formErrors.send);
+        setError(formErrors.send);
         return;
       }
 
-      setReference(payload.reference ?? "");
       setFields(empty);
       setState("sent");
       form.reset();
@@ -94,14 +90,13 @@ export function StartForm() {
           <CheckCircle2 className="h-6 w-6" strokeWidth={1.75} aria-hidden />
         </span>
         <h2 className="mt-5 text-2xl">{startCopy.sentTitle}</h2>
-        {reference ? <p className="mt-3 font-medium text-ink">Reference {reference}</p> : null}
         <p className="mt-3 text-ink/75">{startCopy.sentBody}</p>
         <p className="mt-4 text-[0.9375rem] text-ink/65">
           {startCopy.direct}{" "}
           <a href={`mailto:${company.email}`} className="font-semibold text-azure-deep underline underline-offset-4">
             {company.email}
           </a>
-          {reference ? ` and include ${reference}.` : "."}
+          .
         </p>
         <button type="button" onClick={() => setState("idle")} className="btn btn-outline mt-7">
           {startCopy.another}
@@ -111,16 +106,38 @@ export function StartForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card p-6 md:p-8" noValidate>
-      <div className="grid gap-5 sm:grid-cols-2">
-        <Field label={startCopy.labels.name} htmlFor="name" required>
+    <form
+      name="mojak-start"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      onSubmit={onSubmit}
+      className="card p-6 md:p-8"
+      noValidate
+    >
+      <input type="hidden" name="form-name" value="mojak-start" />
+      <Field label={startCopy.labels.name} htmlFor="name" required>
+        <input
+          id="name"
+          name="name"
+          required
+          autoComplete="name"
+          value={fields.name}
+          onChange={(event) => update("name", event.target.value)}
+          className={cx(inputClass, "h-12")}
+        />
+      </Field>
+
+      <div className="mt-5 grid gap-5 sm:grid-cols-2">
+        <Field label={startCopy.labels.email} htmlFor="email">
           <input
-            id="name"
-            name="name"
-            required
-            autoComplete="name"
-            value={fields.name}
-            onChange={(event) => update("name", event.target.value)}
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            inputMode="email"
+            value={fields.email}
+            onChange={(event) => update("email", event.target.value)}
             className={cx(inputClass, "h-12")}
           />
         </Field>
@@ -130,26 +147,14 @@ export function StartForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
+            inputMode="tel"
             value={fields.phone}
             onChange={(event) => update("phone", event.target.value)}
             className={cx(inputClass, "h-12")}
           />
         </Field>
       </div>
-
-      <div className="mt-5">
-        <Field label={startCopy.labels.email} htmlFor="email" hint={startCopy.hints.contact}>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            autoComplete="email"
-            value={fields.email}
-            onChange={(event) => update("email", event.target.value)}
-            className={cx(inputClass, "h-12")}
-          />
-        </Field>
-      </div>
+      <p className="mt-2 text-[0.875rem] text-ink/55">{startCopy.hints.contact}</p>
 
       <div className="mt-5">
         <Field label={startCopy.labels.problem} htmlFor="problem" required>
@@ -197,12 +202,12 @@ export function StartForm() {
             required
             value={fields.urgency}
             onChange={(event) => update("urgency", event.target.value)}
-            className={cx(inputClass, "h-12")}
+            className={cx(inputClass, "h-12 bg-paper")}
           >
             <option value="">Select one</option>
             {urgencyOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
+              <option key={option} value={option}>
+                {option}
               </option>
             ))}
           </select>
@@ -217,13 +222,13 @@ export function StartForm() {
             required
             value={fields.investment}
             onChange={(event) => update("investment", event.target.value)}
-            placeholder={startCopy.hints.investment}
+            placeholder="Not sure"
             className={cx(inputClass, "h-12")}
           />
         </Field>
       </div>
 
-      <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <div className="absolute left-[-9999px] h-0 w-0 overflow-hidden" inert>
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
@@ -247,6 +252,21 @@ export function StartForm() {
       </button>
     </form>
   );
+}
+
+function validate(fields: Fields) {
+  if (fields.name.trim().length < 2) return formErrors.name;
+  const email = fields.email.trim();
+  const phone = fields.phone.trim();
+  if (!email && !phone) return formErrors.contact;
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return formErrors.email;
+  if (phone && phone.replace(/\D/g, "").length < 7) return formErrors.phone;
+  if (fields.problem.trim().length < 8) return formErrors.problem;
+  if (fields.current.trim().length < 2) return formErrors.current;
+  if (fields.decision.trim().length < 2) return formErrors.decision;
+  if (!(urgencyOptions as readonly string[]).includes(fields.urgency)) return formErrors.urgency;
+  if (fields.investment.trim().length < 2) return formErrors.investment;
+  return "";
 }
 
 function Field({

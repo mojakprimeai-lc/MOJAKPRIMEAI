@@ -88,7 +88,7 @@ const organisationSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-KE" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="en-KE" data-scroll-behavior="smooth" className={`${sora.variable} ${inter.variable}`}>
       <body className="min-h-dvh antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }} />
         <SiteHeader />
