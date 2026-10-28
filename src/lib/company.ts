@@ -2,7 +2,7 @@
  * Factual company details. Public sentences live in site-content.ts.
  */
 
-export const siteUrl = "https://mojakprimeai.netlify.app";
+export const siteUrl = "https://mojakprime.com";
 
 export const company = {
   name: "MOJAK",

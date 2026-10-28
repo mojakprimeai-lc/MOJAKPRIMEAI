@@ -9,3 +9,11 @@
 # static files and the home page 404s.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Forward all traffic from default Netlify subdomain to primary domain
+[[redirects]]
+  from = "https://mojakprimeai.netlify.app/*"
+  to = "https://mojakprime.com/:splat"
+  status = 301
+  force = true
+

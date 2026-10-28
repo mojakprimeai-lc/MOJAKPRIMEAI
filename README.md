@@ -17,7 +17,7 @@ Requires Node 20 or newer.
 
 ## Start form
 
-The Start form uses Netlify Forms so it can receive submissions before MOJAK owns a custom domain.
+The Start form uses Netlify Forms. The public site is `https://mojakprime.com`.
 
 After deployment:
 
